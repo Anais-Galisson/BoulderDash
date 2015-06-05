@@ -1,5 +1,4 @@
 package Modele;
-
 public class Matrice
 {
 	private final int x, y;
@@ -11,11 +10,28 @@ public class Matrice
 		this.y = y;
 		matrice = new char[x][y];
 
+		remplirMatrice();
+	}
+
+	public void remplirMatrice()
+	{
 		for ( int i = 0; i < x; i++ ) {
 			for ( int j = 0; j < y; j++ ) {
 				matrice[i][j] = 'x';
 			}
 		}
+
+		matrice[1][1] = 'J';
+	}
+
+	public int getSizeX()
+	{
+		return matrice.length;
+	}
+
+	public int getSizeY()
+	{
+		return matrice[0].length;
 	}
 
 	public void afficherMatrice()
@@ -49,6 +65,7 @@ public class Matrice
 	public char getCase(int x, int y)
 	{
 		return matrice[x][y];
+
 	}
 
 	public void deplacerBas()
