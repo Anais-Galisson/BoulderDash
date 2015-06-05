@@ -1,14 +1,14 @@
 package Modele;
 
-public class RockfordModel 
+public class RockfordModel extends ElementsAffichables
 {
 	private int x=0, y=0;
 	
-	public RockfordModel(int x, int y) 
+	public RockfordModel(Boolean animate, Boolean move, Boolean explose) 
 	{
-		this.x=x;
-		this.y=y;
+		 super (animate, move, explose);
 	}
+	
 
 	public void avancerselonx(){
 		this.x=x+1;
@@ -24,6 +24,10 @@ public class RockfordModel
 	
 	public void reculerselony(){
 		this.y=y-1;
+	}
+	public void getImageRockford()
+	{
+		
 	}
 
 }
