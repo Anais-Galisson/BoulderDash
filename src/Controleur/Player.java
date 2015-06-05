@@ -3,7 +3,7 @@ package Controleur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class keyListener implements KeyListener
+public class Player implements KeyListener
 {
 
 	boolean up = false;

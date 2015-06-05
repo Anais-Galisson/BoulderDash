@@ -18,23 +18,23 @@ public class FenetreBoulder extends JFrame
 	private final MonPanel PanelInformation = new MonPanel();
 	BufferedImage bf = null;
 	Animation Rock;
-	VueRockfort vr = new VueRockfort();
+	static VueRockfort vr = new VueRockfort();
 
-	public FenetreBoulder()
+	//Player player = new Player(100,100);
+
+	public FenetreBoulder(/* Player player */)
 	{
 		super("Boulder Dash");
 		setSize(800, 500);
 		//setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setLocationRelativeTo(null);
-
 		PanelInformation.setBackground(Color.WHITE);
 		PanelInformation.setPreferredSize(new Dimension(200, 500));
 
 		//	PanelJeu.setSize(60, 60);
 		PanelJeu.setBackground(Color.blue);
 		PanelJeu.setPreferredSize(new Dimension(600, 500));
-
 		getContentPane().add(PanelInformation, BorderLayout.EAST);
 		getContentPane().add(PanelJeu, BorderLayout.WEST);
 
@@ -57,6 +57,7 @@ public class FenetreBoulder extends JFrame
 		ArrayList<BufferedImage> sprites = new ArrayList<BufferedImage>();
 
 		sprites.add(vr.getSprite(7, 7, 16, 16));
+
 		sprites.add(vr.getSprite(7, 31, 16, 16));
 		sprites.add(vr.getSprite(31, 31, 16, 16));
 		//sprites.add(vr.getSprite(31, 31, 16, 16));
