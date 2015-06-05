@@ -21,4 +21,5 @@ public class VueRockfort
 		BufferedImage sprite = spriteSheet.getSubimage(x, y, width, height);
 		return sprite;
 	}
+	
 }

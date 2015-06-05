@@ -18,4 +18,5 @@ public class MonPanel extends JPanel{
 		g.drawImage(db, 0, 0, null);
 		repaint();
 	}
+	
 }
