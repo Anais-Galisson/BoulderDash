@@ -1,47 +1,46 @@
 package Vue;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import Controleur.GestionClavier;
+import Controleur.Player;
+import Modele.Matrice;
+
 public class FenetreBoulder extends JFrame
 {
+	// Pour l'affichage de la matrice
+	public static MonPanel PanelJeu = new MonPanel();
+	public static Matrice matrice = new Matrice(20, 20);
+	public static Player keyListen = new Player();
 
-	private final MonPanel PanelJeu = new MonPanel();
-	private final MonPanel PanelInformation = new MonPanel();
+	private final Panel PanelInformation = new Panel();
 	BufferedImage bf = null;
 	Animation Rock;
 	static VueRockfort vr = new VueRockfort();
 
-	//Player player = new Player(100,100);
-
 	public FenetreBoulder(/* Player player */)
 	{
-		super("Boulder Dash");
-		setSize(800, 500);
-		//setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setLocationRelativeTo(null);
-		PanelInformation.setBackground(Color.WHITE);
-		PanelInformation.setPreferredSize(new Dimension(200, 500));
 
-		//	PanelJeu.setSize(60, 60);
-		PanelJeu.setBackground(Color.blue);
-		PanelJeu.setPreferredSize(new Dimension(600, 500));
-		getContentPane().add(PanelInformation, BorderLayout.EAST);
-		getContentPane().add(PanelJeu, BorderLayout.WEST);
+		this.setVisible(true);
+		this.setSize(320, 320);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setTitle("Boulder Dash");
+		this.setContentPane(PanelJeu);
+		this.addKeyListener(keyListen);
 
-		setVisible(true);
-		init();
-		PanelJeu.paint(getGraphics());
+		// Je ne sais pas ou est ce qu'on créera la matrice après ...
+		matrice.remplirMatrice();
+		matrice.placer(10, 10, 'D');
 
+		GestionClavier.Trame();
+
+		this.getContentPane().add(PanelJeu);
 	}
 
 	public void init()
@@ -67,29 +66,17 @@ public class FenetreBoulder extends JFrame
 		Rock.start();
 	}
 
-	//Graphics dgb;
-	Image db;
+	/*
+	 * //Graphics dgb; Image db;
+	 * 
+	 * //@Override
+	 * 
+	 * @Override public void paint(Graphics g) { paintComponent(getGraphics());
+	 * g.drawImage(db, 0, 0, null); repaint(); }
+	 * 
+	 * public void paintComponent(Graphics g) { if ( Rock != null ) {
+	 * Rock.update(System.currentTimeMillis()); g.drawImage(Rock.sprite, 100,
+	 * 100, 50, 50, null); } repaint(); }
+	 */
 
-	//@Override
-	@Override
-	public void paint(Graphics g)
-	{
-		paintComponent(getGraphics());
-		g.drawImage(db, 0, 0, null);
-		repaint();
-	}
-
-	public void paintComponent(Graphics g)
-	{
-		if ( Rock != null ) {
-			Rock.update(System.currentTimeMillis());
-			g.drawImage(Rock.sprite, 100, 100, 50, 50, null);
-		}
-		repaint();
-	}
-
-	public static void main(String[] args)
-	{
-		FenetreBoulder FB = new FenetreBoulder();
-	}
 }

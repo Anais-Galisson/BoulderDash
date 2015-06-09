@@ -1,4 +1,5 @@
 package Modele;
+
 public class Matrice
 {
 	private final int x, y;
@@ -84,7 +85,7 @@ public class Matrice
 						tmp = matrice[i][j];
 						matrice[i][j] = 'x';
 						i = i + 1;
-						matrice[i][j] = 'G';
+						matrice[i][j] = 'J';
 						System.out.println("Vous avez trouvé le diamant pas le bas");
 					}
 				}
@@ -108,7 +109,7 @@ public class Matrice
 						tmp = matrice[i][j];
 						matrice[i][j] = 'x';
 						i = i - 1;
-						matrice[i][j] = 'G';
+						matrice[i][j] = 'J';
 						System.out.println("Vous avez trouvé le diamant par le haut!");
 					}
 				}
@@ -132,7 +133,7 @@ public class Matrice
 						tmp = matrice[i][j];
 						matrice[i][j] = 'x';
 						j = j - 1;
-						matrice[i][j] = 'G';
+						matrice[i][j] = 'J';
 						System.out.println("Vous avez trouvé le diamant par la gauche!");
 					}
 				}
@@ -156,7 +157,7 @@ public class Matrice
 						tmp = matrice[i][j];
 						matrice[i][j] = 'x';
 						j = j + 1;
-						matrice[i][j] = 'G';
+						matrice[i][j] = 'J';
 						System.out.println("Vous avez gagné le diamant par la droite");
 					}
 				}

@@ -6,10 +6,10 @@ import java.awt.event.KeyListener;
 public class Player implements KeyListener
 {
 
-	boolean up = false;
-	boolean down = false;
-	boolean left = false;
-	boolean right = false;
+	public boolean up = false;
+	public boolean down = false;
+	public boolean left = false;
+	public boolean right = false;
 
 	@Override
 	public void keyPressed(KeyEvent e)
