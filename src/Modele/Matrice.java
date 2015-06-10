@@ -4,9 +4,9 @@ public class Matrice
 {
 	private final int x, y;
 	private final ElementsAffichables[][] matrice;
-	public static Dirt dirt = new Dirt(false, false, true);
-	public static RockfordModel rockford = new RockfordModel(true, true, true);
-	public static Diamond diamond = new Diamond(true, true, true);
+	public static Dirt dirt = new Dirt();
+	public static RockfordModel rockford = new RockfordModel();
+	public static Diamond diamond = new Diamond();
 
 	public Matrice(int x, int y)
 	{

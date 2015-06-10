@@ -1,48 +1,32 @@
 package Modele;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-
 public class RockfordModel extends ElementsAffichables
 {
-	private int x=0, y=0;
-	public BufferedImage spriteSheet;
-	
-	public RockfordModel(Boolean animate, Boolean move, Boolean explose) 
+	private int x = 0, y = 0;
+
+	public RockfordModel()
 	{
-		 super (animate, move, explose);
+		super(true, true, true);
 	}
-	
-	public void avancerselonx(){
-		this.x=x+1;
-	}
-	
-	public void reculerselonx(){
-		this.x=x-1;
-	}
-	
-	public void avancerselony(){
-		this.y=y+1;
-	}
-	
-	public void reculerselony(){
-		this.y=y-1;
-	}
-	
-	public void loadSpriteSheetRockford(String path) throws IOException
+
+	public void avancerselonx()
 	{
-		URL url = this.getClass().getResource(path);
-		spriteSheet = ImageIO.read(url);
+		this.x = x + 1;
 	}
-	
-	public BufferedImage getImageRockford(int x,int y, int width, int height)
+
+	public void reculerselonx()
 	{
-		BufferedImage sprite = spriteSheet.getSubimage(x, y, width, height);
-		return sprite;
+		this.x = x - 1;
+	}
+
+	public void avancerselony()
+	{
+		this.y = y + 1;
+	}
+
+	public void reculerselony()
+	{
+		this.y = y - 1;
 	}
 
 }
-

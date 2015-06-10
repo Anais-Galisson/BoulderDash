@@ -1,29 +1,37 @@
 package Modele;
 
-public  abstract class ElementsAffichables {
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+
+public abstract class ElementsAffichables
+{
+
+	public BufferedImage spriteSheet;
 
 	protected Boolean animate;
 	protected Boolean move;
 	protected Boolean explose;
-	
-	public ElementsAffichables (Boolean animate, Boolean move, Boolean explose) 
+
+	public ElementsAffichables(Boolean animate, Boolean move, Boolean explose)
 	{
 		this.animate = animate;
 		this.move = move;
 		this.explose = explose;
 	}
-	
-	public void Move()
+
+	public void loadSpriteSheetBrickWall(String path) throws IOException
 	{
-		move = true;
+		URL url = this.getClass().getResource(path);
+		spriteSheet = ImageIO.read(url);
 	}
-	public void explose()
+
+	public BufferedImage getImageRockford(int x, int y, int width, int height)
 	{
-		explose = true;
-	}
-	public void Animate()
-	{
-		animate = true;
+		BufferedImage sprite = spriteSheet.getSubimage(x, y, width, height);
+		return sprite;
 	}
 
 }

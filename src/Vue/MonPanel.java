@@ -22,8 +22,6 @@ public class MonPanel extends JPanel
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		//paintComponent(getGraphics());
-		//g.drawImage(db, 0, 0, null);
 
 		//Créer un grand rectangle qui fait toute la longueur de la fenetre
 		g.setColor(new Color(255, 255, 255));
