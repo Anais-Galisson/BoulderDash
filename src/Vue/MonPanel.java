@@ -6,6 +6,8 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
+import Modele.Matrice;
+
 public class MonPanel extends JPanel
 {
 
@@ -30,10 +32,10 @@ public class MonPanel extends JPanel
 		// Affichage de la matrice
 		for ( int x = 0; x < FenetreBoulder.matrice.getSizeX(); x++ ) {
 			for ( int y = 0; y < FenetreBoulder.matrice.getSizeX(); y++ ) {
-				if ( FenetreBoulder.matrice.getCase(x, y) == 'x' ) {
+				if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.dirt ) {
 					g.setColor(new Color(0, 0, 0));
 					g.fillRect(y * 16, x * 16, 16, 16); // Ici j'affiche des rectangles, on utilisera les fonctions getImage ensuite !
-				} else if ( FenetreBoulder.matrice.getCase(x, y) == 'J' ) {
+				} else if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.rockford ) {
 					g.setColor(new Color(125, 0, 0));
 					g.fillRect(y * 16, x * 16, 16, 16);
 				}
@@ -41,5 +43,5 @@ public class MonPanel extends JPanel
 
 		}
 	}
-	
+
 }

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 import Controleur.GestionClavier;
 import Controleur.Player;
+import Modele.Diamond;
 import Modele.Matrice;
 
 public class FenetreBoulder extends JFrame
@@ -17,6 +18,9 @@ public class FenetreBoulder extends JFrame
 	public static MonPanel PanelJeu = new MonPanel();
 	public static Matrice matrice = new Matrice(20, 20);
 	public static Player keyListen = new Player();
+
+	// diamond pour mettre dans matrice
+	Diamond diamond = new Diamond(true, true, true);
 
 	private final Panel PanelInformation = new Panel();
 	BufferedImage bf = null;
@@ -36,8 +40,7 @@ public class FenetreBoulder extends JFrame
 
 		// Je ne sais pas ou est ce qu'on créera la matrice après ...
 		matrice.remplirMatrice();
-		matrice.placer(10, 10, 'D');
-
+		matrice.placer(5, 5, diamond);
 		GestionClavier.Trame();
 
 		this.getContentPane().add(PanelJeu);
