@@ -46,14 +46,14 @@ public class Matrice
 		for (int i = 0; i < x; i++ ){
 			matrice[i][0] = steelwall;
 		}
-		/*for (int i = 0; i < x; i++ ){
+		for (int i = 0; i < x; i++ ){
 			
-			matrice[i][y] = steelwall;
+			matrice[i][y-1] = steelwall;
 		}
 		for (int j = 0; j < x; j++ ){
 			
-			matrice[x][j] = steelwall;
-		}*/
+			matrice[x-1][j] = steelwall;
+		}
 		
 
 		matrice[1][1] = rockford;
