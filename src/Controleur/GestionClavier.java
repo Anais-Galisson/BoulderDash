@@ -19,18 +19,18 @@ public class GestionClavier
 
 			if ( FenetreBoulder.keyListen.down ) {
 
-				FenetreBoulder.matrice.deplacerBas();
+				FenetreBoulder.matrice.deplacerbas();
 
 			} else if ( FenetreBoulder.keyListen.up ) {
 
-				FenetreBoulder.matrice.deplacerHaut();
+				FenetreBoulder.matrice.deplacerhaut();
 			} else if ( FenetreBoulder.keyListen.right ) {
 
-				FenetreBoulder.matrice.deplacerDroite();
+				FenetreBoulder.matrice.deplacerdroite();
 
 			} else if ( FenetreBoulder.keyListen.left ) {
 
-				FenetreBoulder.matrice.deplacerGauche();
+				FenetreBoulder.matrice.deplacergauche();
 			}
 
 			FenetreBoulder.PanelJeu.repaint();

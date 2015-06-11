@@ -1,5 +1,7 @@
 package Modele;
 
+import java.awt.image.BufferedImage;
+
 public class Matrice
 {
 	private final int x, y;
@@ -8,22 +10,51 @@ public class Matrice
 	public static RockfordModel rockford = new RockfordModel();
 	public static Diamond diamond = new Diamond();
 
+	public static SteelWall steelwall = new SteelWall();
+	public BufferedImage d;
+
+
 	public Matrice(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
 		matrice = new ElementsAffichables[x][y];
+		//d = dirt.construireDirt();
 
 		remplirMatrice();
+		placer(5, 5, diamond);
+		placer(10,20, diamond);
+		placer(20,10, diamond);
+		placer(30,20, diamond);
+		placer(15,20, diamond);
+		placer(20,15, diamond);
 	}
-
+	public int getY()
+	{
+		return y;
+	}
 	public void remplirMatrice()
 	{
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
+		for ( int i = 1; i < x-1; i++ ) {
+			for ( int j = 1; j < y-1; j++ ) {
 				matrice[i][j] = dirt;
 			}
 		}
+		for (int j = 0; j < y; j++ ){
+			matrice[0][j] = steelwall;
+		}
+		for (int i = 0; i < x; i++ ){
+			matrice[i][0] = steelwall;
+		}
+		/*for (int i = 0; i < x; i++ ){
+			
+			matrice[i][y] = steelwall;
+		}
+		for (int j = 0; j < x; j++ ){
+			
+			matrice[x][j] = steelwall;
+		}*/
+		
 
 		matrice[1][1] = rockford;
 	}
@@ -72,71 +103,47 @@ public class Matrice
 
 	}
 
-	public void deplacerBas()
-	{
-		ElementsAffichables tmp;
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
-
-				if ( matrice[i][j] == rockford ) {
-					if ( i + 1 < x && (matrice[i + 1][j] == dirt || matrice[i + 1][j] == null) ) { // Si c'est du vide ou boue  ..
-						tmp = matrice[i][j];
-						matrice[i][j] = null;
-						i = i + 1;
-						matrice[i][j] = tmp;
-					} else if ( i + 1 < x && matrice[i + 1][j] == diamond ) { // Si c'est un diamant...
-						tmp = matrice[i][j];
-						matrice[i][j] = null;
-						i = i + 1;
-						matrice[i][j] = rockford;
-						System.out.println("Vous avez trouvé le diamant pas le bas");
-					}
-				}
-			}
-		}
-	}
-
-	public void deplacerHaut()
-	{
-		ElementsAffichables tmp;
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
-
-				if ( matrice[i][j] == rockford ) {
-					if ( i > 0 && (matrice[i - 1][j] == dirt || matrice[i - 1][j] == null) ) { //vérifier que l'espace est vide
-						tmp = matrice[i][j];
-						matrice[i][j] = null;
-						i = i - 1;
-						matrice[i][j] = tmp;
-					} else if ( i > 0 && matrice[i - 1][j] == diamond ) {
-						tmp = matrice[i][j];
-						matrice[i][j] = null;
-						i = i - 1;
-						matrice[i][j] = rockford;
-						System.out.println("Vous avez trouvé le diamant par le haut!");
-					}
-				}
-			}
-		}
-	}
-
-	public void deplacerGauche()
+	public void deplacerdroite()
 	{
 		ElementsAffichables tmp;
 		for ( int i = 0; i < x; i++ ) {
 			for ( int j = 0; j < y; j++ ) {
 
 				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( j > 0 && (matrice[i][j - 1] == dirt || matrice[i][j - 1] == null) ) { // Vérifier que l'espace est dirt
+					if ( i + 1 < x && matrice[i + 1][j] == dirt ) { // Si c'est du vide ..
 						tmp = matrice[i][j];
-						matrice[i][j] = null;
-						j = j - 1;
+						matrice[i][j] = dirt;
+						i = i + 1;
 						matrice[i][j] = tmp;
-					} else if ( j > 0 && matrice[i][j - 1] == diamond ) {
+					} else if ( i + 1 < x && matrice[i + 1][j] == diamond ) { // Si c'est un diamant...
+						System.out.println("tesst");
 						tmp = matrice[i][j];
-						matrice[i][j] = null;
-						System.out.println("hello");
-						j = j - 1;
+						matrice[i][j] = dirt;
+						i = i + 1;
+						matrice[i][j] = rockford;
+						System.out.println("Vous avez trouvé le diamant pas la droite");
+					}
+				}
+			}
+		}
+	}
+
+	public void deplacergauche()
+	{
+		ElementsAffichables tmp;
+		for ( int i = 0; i < x; i++ ) {
+			for ( int j = 0; j < y; j++ ) {
+
+				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
+					if ( i > 0 && matrice[i - 1][j] == dirt ) { //vérifier que l'espace est vide
+						tmp = matrice[i][j];
+						matrice[i][j] = dirt;
+						i = i - 1;
+						matrice[i][j] = tmp;
+					} else if ( i > 0 && matrice[i - 1][j] == diamond ) {
+						tmp = matrice[i][j];
+						matrice[i][j] = dirt;
+						i = i - 1;
 						matrice[i][j] = rockford;
 						System.out.println("Vous avez trouvé le diamant par la gauche!");
 					}
@@ -145,24 +152,49 @@ public class Matrice
 		}
 	}
 
-	public void deplacerDroite()
+	public void deplacerhaut()
 	{
 		ElementsAffichables tmp;
 		for ( int i = 0; i < x; i++ ) {
 			for ( int j = 0; j < y; j++ ) {
 
 				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( j + 1 < y && (matrice[i][j + 1] == dirt || matrice[i][j + 1] == null) ) { // vérifier que l'espace est vide
+					if ( j > 0 && matrice[i][j - 1] == dirt ) { // Vérifier que l'espace est dirt
 						tmp = matrice[i][j];
-						matrice[i][j] = null;
+						matrice[i][j] = dirt;
+						j = j - 1;
+						matrice[i][j] = tmp;
+					} else if ( j > 0 && matrice[i][j - 1] == diamond ) {
+						tmp = matrice[i][j];
+						matrice[i][j] = dirt;
+						System.out.println("hello");
+						j = j - 1;
+						matrice[i][j] = rockford;
+						System.out.println("Vous avez trouvé le diamant par le haut!");
+					}
+				}
+			}
+		}
+	}
+
+	public void deplacerbas()
+	{
+		ElementsAffichables tmp;
+		for ( int i = 0; i < x; i++ ) {
+			for ( int j = 0; j < y; j++ ) {
+
+				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
+					if ( j + 1 < y && matrice[i][j + 1] == dirt ) { // vérifier que l'espace est vide
+						tmp = matrice[i][j];
+						matrice[i][j] = dirt;
 						j = j + 1;
 						matrice[i][j] = tmp;
 					} else if ( j + 1 < y && matrice[i][j + 1] == diamond ) {
 						tmp = matrice[i][j];
-						matrice[i][j] = null;
+						matrice[i][j] = dirt;
 						j = j + 1;
 						matrice[i][j] = rockford;
-						System.out.println("Vous avez gagné le diamant par la droite");
+						System.out.println("Vous avez gagné le diamant par le bas");
 					}
 				}
 			}
@@ -174,10 +206,7 @@ public class Matrice
 		return x;
 	}
 
-	public int getY()
-	{
-		return y;
-	}
+	
 
 	public ElementsAffichables[][] getMatrice()
 	{
