@@ -9,8 +9,10 @@ public class Matrice
 	public static Dirt dirt = new Dirt();
 	public static RockfordModel rockford = new RockfordModel();
 	public static Diamond diamond = new Diamond();
+
 	public static SteelWall steelwall = new SteelWall();
 	public BufferedImage d;
+
 
 	public Matrice(int x, int y)
 	{

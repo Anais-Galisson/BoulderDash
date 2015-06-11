@@ -2,9 +2,6 @@ package Modele;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
 
 public class RockfordModel extends ElementsAffichables
 {
@@ -14,22 +11,18 @@ public class RockfordModel extends ElementsAffichables
 	{
 		 super (true, true, true);
 	}
-	
-	public void avancerselonx(){
-		this.x=x+1;
+
+
+	public void avancerselonx()
+	{
+		this.x = x + 1;
 	}
-	
-	public void reculerselonx(){
-		this.x=x-1;
+
+	public void reculerselonx()
+	{
+		this.x = x - 1;
 	}
-	
-	public void avancerselony(){
-		this.y=y+1;
-	}
-	
-	public void reculerselony(){
-		this.y=y-1;
-	}
+
 
 	@Override
 	public BufferedImage construireEA() {
@@ -51,5 +44,13 @@ public class RockfordModel extends ElementsAffichables
 		//sprites.add(vr.getSprite(31, 31, 16, 16));
 		return sprite;
 	}
-}
+	public void avancerselony()
+	{
+		this.y = y + 1;
+	}
 
+	public void reculerselony()
+	{
+		this.y = y - 1;
+	}
+}

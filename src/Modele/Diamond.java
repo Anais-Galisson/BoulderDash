@@ -2,9 +2,7 @@ package Modele;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
 
 public class Diamond extends ElementsAffichables
 {
@@ -32,5 +30,6 @@ public class Diamond extends ElementsAffichables
 		//sprites.add(vr.getSprite(31, 31, 16, 16));
 		return sprite;
 	}
+
 
 }

@@ -1,25 +1,16 @@
 package Modele;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
 
 public class BrickWall extends ElementsAffichables{
 	
-	public BrickWall(Boolean animate, Boolean move, Boolean explose) 
+
+	public BrickWall()
+
 	{
-		super (animate, move, explose);
-	}
-	
-	public void Move()
-	{
-		move = false;
-	}
-	public void Animate()
-	{
-		animate = false;
+		super(false, false, true);
 	}
 
 	@Override

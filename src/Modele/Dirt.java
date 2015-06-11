@@ -2,26 +2,13 @@ package Modele;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
-
 import javax.imageio.ImageIO;
 
 public class Dirt extends ElementsAffichables{
 
-	
-	public Dirt() 
+	public Dirt()
 	{
-		super (false, false, true);
-		
-	}
-
-	public void Animate()
-	{
-		animate = false;
-	}
-	public void Move()
-	{
-		move = false;
+		super(false, false, true);
 	}
 	public BufferedImage construireEA(){
 		try 
@@ -31,7 +18,6 @@ public class Dirt extends ElementsAffichables{
 	
 		catch ( IOException e ) 
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		BufferedImage sprite;

@@ -6,34 +6,25 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-public  abstract class ElementsAffichables {
+public abstract class ElementsAffichables
+{
 
+	public BufferedImage spriteSheet;
 	protected Boolean animate;
 	protected Boolean move;
 	protected Boolean explose;
-	public BufferedImage spriteSheet;
 
-	
-	public ElementsAffichables (Boolean animate, Boolean move, Boolean explose) 
+
+
+	public ElementsAffichables(Boolean animate, Boolean move, Boolean explose)
+
 	{
 		this.animate = animate;
 		this.move = move;
 		this.explose = explose;
 	}
-	
-	public void Move()
-	{
-		move = true;
-	}
-	public void explose()
-	{
-		explose = true;
-	}
-	public void Animate()
-	{
-		animate = true;
-	}
-	
+
+
 	public void loadSpriteSheet(String path) throws IOException
 	{
 		URL url = this.getClass().getResource(path);
