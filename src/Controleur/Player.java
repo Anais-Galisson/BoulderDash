@@ -3,6 +3,8 @@ package Controleur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Modele.Dirt;
+
 public class Player implements KeyListener
 {
 
@@ -11,6 +13,11 @@ public class Player implements KeyListener
 	public boolean left = false;
 	public boolean right = false;
 
+	public Player ()
+	{
+		
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{

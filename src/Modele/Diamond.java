@@ -8,22 +8,28 @@ import javax.imageio.ImageIO;
 
 public class Diamond extends ElementsAffichables
 {
-	public BufferedImage spriteSheet;
+	public Diamond() 
+	{
+		super (true, true, true);
+	}
 
-	public Diamond(Boolean animate, Boolean move, Boolean explose) 
-	{
-		super (animate, move, explose);
-	}
+	@Override
+	public BufferedImage construireEA() {
+		try 
+		{
+			this.loadSpriteSheet("diamond.gif");
+		}
 	
-	public void loadSpriteSheetDiamond(String path) throws IOException
-	{
-		URL url = this.getClass().getResource(path);
-		spriteSheet = ImageIO.read(url);
-	}
+		catch ( IOException e ) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedImage sprite;
 	
-	public BufferedImage getImageDiamond(int x,int y, int width, int height)
-	{
-		BufferedImage sprite = spriteSheet.getSubimage(x, y, width, height);
+		sprite = this.getSprite(0, 0, 16, 16);
+		
+		//sprites.add(vr.getSprite(31, 31, 16, 16));
 		return sprite;
 	}
 

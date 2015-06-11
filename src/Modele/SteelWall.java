@@ -7,36 +7,29 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class SteelWall extends ElementsAffichables {
-
-	public BufferedImage spriteSheet;
 	
-	public SteelWall(Boolean animate, Boolean move, Boolean explose) 
+	public SteelWall() 
 	{
-		super (animate, move, explose);
+		super (false, false, false);
 	}
 
-	public void loadSpriteSheetSteelWall(String path) throws IOException
-	{
-		URL url = this.getClass().getResource(path);
-		spriteSheet = ImageIO.read(url);
-	}
+	@Override
+	public BufferedImage construireEA() {
+		try 
+		{
+			this.loadSpriteSheet("steelwall.gif");
+		}
 	
-	public BufferedImage getImageSteelWall(int x,int y, int width, int height)
-	{
-		BufferedImage sprite = spriteSheet.getSubimage(x, y, width, height);
+		catch ( IOException e ) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedImage sprite;
+	
+		sprite = this.getSprite(0, 0, 16, 16);
+		
+		//sprites.add(vr.getSprite(31, 31, 16, 16));
 		return sprite;
-	}
-	
-	public void explose()
-	{
-		explose = false;
-	}
-	public void Animate()
-	{
-		animate = false;
-	}
-	public void Move()
-	{
-		move = false;
 	}
 }

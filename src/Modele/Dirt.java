@@ -8,23 +8,11 @@ import javax.imageio.ImageIO;
 
 public class Dirt extends ElementsAffichables{
 
-	public BufferedImage spriteSheet;
 	
-	public Dirt(Boolean animate, Boolean move, Boolean explose) 
+	public Dirt() 
 	{
-		super (animate, move, explose);
-	}
-
-	public void loadSpriteSheetDirt(String path) throws IOException
-	{
-		URL url = this.getClass().getResource(path);
-		spriteSheet = ImageIO.read(url);
-	}
-	
-	public BufferedImage getImageDirt(int x,int y, int width, int height)
-	{
-		BufferedImage sprite = spriteSheet.getSubimage(x, y, width, height);
-		return sprite;
+		super (false, false, true);
+		
 	}
 
 	public void Animate()
@@ -35,5 +23,24 @@ public class Dirt extends ElementsAffichables{
 	{
 		move = false;
 	}
+	public BufferedImage construireEA(){
+		try 
+		{
+			this.loadSpriteSheet("dirt.gif");
+		}
+	
+		catch ( IOException e ) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedImage sprite;
+	
+		sprite = this.getSprite(0, 0, 16, 16);
+		
+		//sprites.add(vr.getSprite(31, 31, 16, 16));
+		return sprite;
+
+}
 
 }

@@ -9,11 +9,10 @@ import javax.imageio.ImageIO;
 public class RockfordModel extends ElementsAffichables
 {
 	private int x=0, y=0;
-	public BufferedImage spriteSheet;
 	
-	public RockfordModel(Boolean animate, Boolean move, Boolean explose) 
+	public RockfordModel() 
 	{
-		 super (animate, move, explose);
+		 super (true, true, true);
 	}
 	
 	public void avancerselonx(){
@@ -31,18 +30,26 @@ public class RockfordModel extends ElementsAffichables
 	public void reculerselony(){
 		this.y=y-1;
 	}
+
+	@Override
+	public BufferedImage construireEA() {
+		// TODO Auto-generated method stub
+		try 
+		{
+			this.loadSpriteSheet("rockford.gif");
+		}
 	
-	public void loadSpriteSheetRockford(String path) throws IOException
-	{
-		URL url = this.getClass().getResource(path);
-		spriteSheet = ImageIO.read(url);
-	}
+		catch ( IOException e ) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedImage sprite;
 	
-	public BufferedImage getImageRockford(int x,int y, int width, int height)
-	{
-		BufferedImage sprite = spriteSheet.getSubimage(x, y, width, height);
+		sprite = this.getSprite(7, 7, 16, 16);
+		
+		//sprites.add(vr.getSprite(31, 31, 16, 16));
 		return sprite;
 	}
-
 }
 
