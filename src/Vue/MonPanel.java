@@ -31,10 +31,13 @@ public class MonPanel extends JPanel
 		for ( int x = 0; x < FenetreBoulder.matrice.getSizeX(); x++ ) {
 			for ( int y = 0; y < FenetreBoulder.matrice.getSizeX(); y++ ) {
 				if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.dirt ) {
-					g.setColor(new Color(0, 0, 0));
+					g.setColor(Color.BLACK);
 					g.fillRect(y * 16, x * 16, 16, 16); // Ici j'affiche des rectangles, on utilisera les fonctions getImage ensuite !
 				} else if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.rockford ) {
-					g.setColor(new Color(125, 0, 0));
+					g.setColor(Color.pink);
+					g.fillRect(y * 16, x * 16, 16, 16);
+				} else if ( FenetreBoulder.matrice.getCase(x, y) == null ) {
+					g.setColor(Color.GRAY);
 					g.fillRect(y * 16, x * 16, 16, 16);
 				}
 			}

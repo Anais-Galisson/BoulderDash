@@ -78,15 +78,15 @@ public class Matrice
 		for ( int i = 0; i < x; i++ ) {
 			for ( int j = 0; j < y; j++ ) {
 
-				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( i + 1 < x && matrice[i + 1][j] == dirt ) { // Si c'est du vide ..
+				if ( matrice[i][j] == rockford ) {
+					if ( i + 1 < x && (matrice[i + 1][j] == dirt || matrice[i + 1][j] == null) ) { // Si c'est du vide ou boue  ..
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						i = i + 1;
 						matrice[i][j] = tmp;
 					} else if ( i + 1 < x && matrice[i + 1][j] == diamond ) { // Si c'est un diamant...
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						i = i + 1;
 						matrice[i][j] = rockford;
 						System.out.println("Vous avez trouvé le diamant pas le bas");
@@ -102,15 +102,15 @@ public class Matrice
 		for ( int i = 0; i < x; i++ ) {
 			for ( int j = 0; j < y; j++ ) {
 
-				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( i > 0 && matrice[i - 1][j] == dirt ) { //vérifier que l'espace est vide
+				if ( matrice[i][j] == rockford ) {
+					if ( i > 0 && (matrice[i - 1][j] == dirt || matrice[i - 1][j] == null) ) { //vérifier que l'espace est vide
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						i = i - 1;
 						matrice[i][j] = tmp;
 					} else if ( i > 0 && matrice[i - 1][j] == diamond ) {
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						i = i - 1;
 						matrice[i][j] = rockford;
 						System.out.println("Vous avez trouvé le diamant par le haut!");
@@ -127,14 +127,14 @@ public class Matrice
 			for ( int j = 0; j < y; j++ ) {
 
 				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( j > 0 && matrice[i][j - 1] == dirt ) { // Vérifier que l'espace est dirt
+					if ( j > 0 && (matrice[i][j - 1] == dirt || matrice[i][j - 1] == null) ) { // Vérifier que l'espace est dirt
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						j = j - 1;
 						matrice[i][j] = tmp;
 					} else if ( j > 0 && matrice[i][j - 1] == diamond ) {
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						System.out.println("hello");
 						j = j - 1;
 						matrice[i][j] = rockford;
@@ -152,14 +152,14 @@ public class Matrice
 			for ( int j = 0; j < y; j++ ) {
 
 				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( j + 1 < y && matrice[i][j + 1] == dirt ) { // vérifier que l'espace est vide
+					if ( j + 1 < y && (matrice[i][j + 1] == dirt || matrice[i][j + 1] == null) ) { // vérifier que l'espace est vide
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						j = j + 1;
 						matrice[i][j] = tmp;
 					} else if ( j + 1 < y && matrice[i][j + 1] == diamond ) {
 						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
+						matrice[i][j] = null;
 						j = j + 1;
 						matrice[i][j] = rockford;
 						System.out.println("Vous avez gagné le diamant par la droite");
