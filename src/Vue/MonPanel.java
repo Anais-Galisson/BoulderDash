@@ -66,9 +66,9 @@ public class MonPanel extends JPanel implements Observer
 				}else if (FenetreBoulder.matrice.getCase(x, y) == Matrice.vide){
 					g.setColor(new Color(0, 0, 0));
 					g.fillRect(x* 16, y*16, 16, 16);
-				}else if (FenetreBoulder.matrice.getCase(x, y) == Matrice.boulders){
+				}/*else if (FenetreBoulder.matrice.getCase(x, y) == Matrice.boulders){
 					g.drawImage(bold, x*16, y*16, 16, 16, null);
-				}else if (FenetreBoulder.matrice.getCase(x,y) == Matrice.brickwall){
+				}*/else if (FenetreBoulder.matrice.getCase(x,y) == Matrice.brickwall){
 					g.drawImage(brick,x* 16, y*16, 16, 16, null);
 				}
 					
