@@ -1,5 +1,7 @@
 package Controleur;
 
+import java.awt.Menu;
+
 import Vue.FenetreBoulder;
 
 public class Main
@@ -8,6 +10,7 @@ public class Main
 	{
 
 		FenetreBoulder fb = new FenetreBoulder();
+		Menu m1 = new Menu();
 
 	}
 

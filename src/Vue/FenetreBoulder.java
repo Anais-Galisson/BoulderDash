@@ -36,7 +36,6 @@ public class FenetreBoulder extends JFrame
 		//setLocationRelativeTo(null);
 		PanelInformation.setBackground(Color.WHITE);
 		PanelInformation.setPreferredSize(new Dimension(200, 480));
-
 		//	PanelJeu.setSize(60, 60);
 		PanelJeu.setBackground(Color.blue);
 		PanelJeu.setPreferredSize(new Dimension(480, 480));
