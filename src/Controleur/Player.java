@@ -27,6 +27,7 @@ public class Player implements KeyListener
 		}
 		if ( e.getExtendedKeyCode() == 40 ) {
 			down = true;
+
 		}
 		if ( e.getExtendedKeyCode() == 37 ) {
 			left = true;

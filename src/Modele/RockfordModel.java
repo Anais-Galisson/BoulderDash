@@ -2,27 +2,22 @@ package Modele;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Observer;
 
 public class RockfordModel extends ElementsAffichables
 {
-	private int x=0, y=0;
+	private int x;
+	private int y;
+	private ArrayList<Observer> tabObservateur;
 	
-	public RockfordModel() 
+	public RockfordModel(int posinitX, int posinitY) 
 	{
 		 super (true, true, true);
+		 x=posinitX;
+		 y=posinitY;
+		 tabObservateur=new ArrayList<Observer>();
 	}
-
-
-	public void avancerselonx()
-	{
-		this.x = x + 1;
-	}
-
-	public void reculerselonx()
-	{
-		this.x = x - 1;
-	}
-
 
 	@Override
 	public BufferedImage construireEA() {
@@ -44,13 +39,85 @@ public class RockfordModel extends ElementsAffichables
 		//sprites.add(vr.getSprite(31, 31, 16, 16));
 		return sprite;
 	}
-	public void avancerselony()
+	public int getx()
 	{
-		this.y = y + 1;
+		return x;
 	}
 
-	public void reculerselony()
+	public int gety()
 	{
-		this.y = y - 1;
+		return y;
 	}
+
+	@Override
+	public void addObserver(Observer o) {
+		
+		tabObservateur.add(o);
+	}
+
+	@Override
+	public void deleteObserver(Observer o) {
+		
+		tabObservateur.remove(o);
+	}
+
+/*	public void notifyObserveurs() {
+		
+		for(int i=0;i<tabObservateur.size();i++)
+        {
+                Observer o = tabObservateur.get(i);
+                o.update(this);
+        }
+		
+	}
+*/
+	@Override
+	public void notifyObservers(){
+		
+		for(int i=0;i<tabObservateur.size();i++)
+        {
+			//System.out.println("observeur:"+tabObservateur.get(i));
+                Observer o = tabObservateur.get(i);
+                o.update(this, null);
+        }
+	}
+		
+	
+	public void deplacerDroite(){
+		
+		if(x<29){ //TODO replacer 100 par la taille exacte de la fenetre de jeux (le moins 1 c'est pour les murs)
+		this.x++;
+		}
+		setChanged();
+		notifyObservers();
+		
+	}
+	
+	public void deplacerGauche(){
+		if(x>2){
+		this.x--;
+		}
+		setChanged();
+		notifyObservers();
+		
+	}
+	
+	public void deplacerHaut(){
+		if(y>2){
+		this.y--;
+		}
+		setChanged();
+		notifyObservers();
+		
+	}
+	
+	public void deplacerBas(){
+		if(y<29){
+		this.y++;
+		}
+		setChanged();
+		notifyObservers();
+	}
+	
+
 }

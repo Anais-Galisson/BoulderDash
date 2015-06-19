@@ -3,10 +3,11 @@ package Modele;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 
 import javax.imageio.ImageIO;
 
-public abstract class ElementsAffichables
+public abstract class ElementsAffichables extends Observable
 {
 
 	public BufferedImage spriteSheet;

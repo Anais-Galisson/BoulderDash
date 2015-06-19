@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.image.BufferedImage;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 
@@ -21,12 +22,10 @@ public class FenetreBoulder extends JFrame
 	public static Player keyListen = new Player();
 
 	// diamond pour mettre dans matrice
-	Diamond diamond = new Diamond();
+	
 
 	private final Panel PanelInformation = new Panel();
-	BufferedImage bf = null;
-
-
+	
 	public FenetreBoulder()
 	{
 		super("Boulder Dash");
@@ -46,12 +45,12 @@ public class FenetreBoulder extends JFrame
 		this.addKeyListener(keyListen);
 		this.setVisible(true);
 		
-		//this.setContentPane(PanelJeu);
-		
 
-		//matrice.remplirMatrice();
-		//matrice.placer(5, 5, diamond);
 		GestionClavier.Trame();
+
 	}
+
+
+
 
 }

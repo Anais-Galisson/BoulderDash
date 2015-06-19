@@ -1,62 +1,91 @@
 package Modele;
 
+import java.awt.List;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-public class Matrice
+import Vue.FenetreBoulder;
+
+
+public class Matrice 
 {
-	private final int x, y;
+	private final int taillex, tailley;
 	private final ElementsAffichables[][] matrice;
 	public static Dirt dirt = new Dirt();
-	public static RockfordModel rockford = new RockfordModel();
+	public static Vide vide = new Vide();
+	public static RockfordModel rockford = new RockfordModel(2,2);
 	public static Diamond diamond = new Diamond();
-
+	//public static Boulder boulder = new Boulder();
+	public static BrickWall brickwall = new BrickWall();
+	public static ArrayList<ElementsAffichables> boulders = new ArrayList<ElementsAffichables>();
 	public static SteelWall steelwall = new SteelWall();
 	public BufferedImage d;
 
 
-	public Matrice(int x, int y)
+	public Matrice(int taillex, int tailley)
 	{
-		this.x = x;
-		this.y = y;
-		matrice = new ElementsAffichables[x][y];
+		this.taillex = taillex;
+		this.tailley = tailley;
+		matrice = new ElementsAffichables[taillex][tailley];
+		
+		Boulder b1 = new Boulder(4,5);
+		Boulder b2 = new Boulder (11,10);
+		Boulder b3 = new Boulder (9,12);
+		Boulder b4 = new Boulder (21,9);
+		Boulder b5 = new Boulder (24,23);
+		boulders.add(b1);
+		boulders.add(b2);
+		boulders.add(b3);
+		boulders.add(b4);
+		boulders.add(b5);
+		//rockford.addObserver(this);
 		//d = dirt.construireDirt();
-
 		remplirMatrice();
+		placer(b1.getx(),b1.gety(), boulders.get(0));
+		placer(b2.getx(),b2.gety(), boulders.get(1));
+		placer(b3.getx(),b3.gety(), boulders.get(2));
+		placer(b4.getx(),b4.gety(), boulders.get(3));
+		placer(b5.getx(),b5.gety(), boulders.get(4));
 		placer(5, 5, diamond);
 		placer(10,20, diamond);
 		placer(20,10, diamond);
-		placer(30,20, diamond);
+		placer(20,20, diamond);
 		placer(15,20, diamond);
 		placer(20,15, diamond);
+
+		//chute();
 	}
 	public int getY()
 	{
-		return y;
+		return tailley;
+	}
+	public int getX(){
+		return taillex;
 	}
 	public void remplirMatrice()
 	{
-		for ( int i = 1; i < x-1; i++ ) {
-			for ( int j = 1; j < y-1; j++ ) {
+		for ( int i = 1; i < taillex-1; i++ ) {
+			for ( int j = 1; j < tailley-1; j++ ) {
 				matrice[i][j] = dirt;
 			}
 		}
-		for (int j = 0; j < y; j++ ){
+		for (int j = 0; j < tailley; j++ ){
 			matrice[0][j] = steelwall;
+			matrice[taillex-1][j] = steelwall;
 		}
-		for (int i = 0; i < x; i++ ){
+		for (int i = 0; i < taillex; i++ ){
 			matrice[i][0] = steelwall;
-		}
-		for (int i = 0; i < x; i++ ){
-			
-			matrice[i][y-1] = steelwall;
-		}
-		for (int j = 0; j < x; j++ ){
-			
-			matrice[x-1][j] = steelwall;
+			matrice[i][tailley-1] = steelwall;
 		}
 		
-
-		matrice[1][1] = rockford;
+		for (int i =1; i<taillex-7; i++){
+			matrice[i][10] = brickwall;
+		}
+		for (int i =7; i<taillex-1; i++){
+			matrice[i][20] = brickwall;
+		}
+		placer(2,2,rockford);
+	
 	}
 
 	public int getSizeX()
@@ -66,17 +95,17 @@ public class Matrice
 
 	public int getSizeY()
 	{
-		return matrice[0].length;
+		return matrice.length;
 	}
 
 	public void afficherMatrice()
 	{
 		System.out.println();
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
+		for ( int i = 0; i < taillex; i++ ) {
+			for ( int j = 0; j < tailley; j++ ) {
 				System.out.print(" " + matrice[i][j]);
 			}
-			System.out.println(" ");
+			System.out.println("---------------------------------------------- ");
 		}
 	}
 
@@ -85,16 +114,34 @@ public class Matrice
 		x_placement = x_placement - 1;
 		y_placement = y_placement - 1;
 
-		if ( x_placement < 0 || y_placement < 0 || y_placement > y || x_placement > x ) {
+		if ( x_placement < 0 || y_placement < 0 || y_placement > tailley || x_placement > taillex ) 
+		{
 			System.out.println("ERREUR");
-		} else if ( matrice[x_placement][y_placement] == dirt ) {
+		} 
+		else if ( matrice[x_placement][y_placement] == dirt ) 
+		{
+			//System.out.println("dirt x_placement: "+x_placement+" y_placement: "+y_placement);
 			matrice[x_placement][y_placement] = elem;
-		} else {
+			//System.out.println("dirtbis x_placement: "+x_placement+" y_placement: "+y_placement);
+		} 
+		else if (matrice[x_placement][y_placement] == diamond)
+		{
+			System.out.println("vous avez mangé le diamond !!");
+			//System.out.println("diamond x_placement: "+x_placement+" y_placement: "+y_placement);
+			matrice[x_placement][y_placement] = rockford;
+			//System.out.println("diamondbis x_placement: "+x_placement+" y_placement: "+y_placement);	
+		} 
+		else if (matrice[x_placement][y_placement] == rockford){ //contre le dédoublement
+			matrice[x_placement][y_placement] = elem;
+		}
+		else if (matrice[x_placement][y_placement] == vide){ //contre le passage dans le vide
+			matrice[x_placement][y_placement] = elem;
+		}
+		else 
+		{
 			System.out.println("Bug, pas de dirt, autre objet, impossible de s'y mettre !");
 		}
-
-		//ajouter d'autre conditions..
-
+		//ajouter d'autres conditions..
 	}
 
 	public ElementsAffichables getCase(int x, int y)
@@ -103,114 +150,94 @@ public class Matrice
 
 	}
 
-	public void deplacerdroite()
-	{
-		ElementsAffichables tmp;
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
-
-				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( i + 1 < x && matrice[i + 1][j] == dirt ) { // Si c'est du vide ..
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						i = i + 1;
-						matrice[i][j] = tmp;
-					} else if ( i + 1 < x && matrice[i + 1][j] == diamond ) { // Si c'est un diamant...
-						System.out.println("tesst");
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						i = i + 1;
-						matrice[i][j] = rockford;
-						System.out.println("Vous avez trouvé le diamant pas la droite");
-					}
-				}
-			}
+	public void deplacerdroite(){
+		int posx=rockford.getx();
+		int posy=rockford.gety();
+		if (matrice[posx][posy-1] == brickwall || matrice[posx][posy-1] == steelwall)
+		{
+			placer(posx, posy, rockford);
+		}
+		else
+		{
+			rockford.deplacerDroite();
+			//chute();
+			placer(posx, posy, vide);
 		}
 	}
-
-	public void deplacergauche()
-	{
-		ElementsAffichables tmp;
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
-
-				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( i > 0 && matrice[i - 1][j] == dirt ) { //vérifier que l'espace est vide
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						i = i - 1;
-						matrice[i][j] = tmp;
-					} else if ( i > 0 && matrice[i - 1][j] == diamond ) {
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						i = i - 1;
-						matrice[i][j] = rockford;
-						System.out.println("Vous avez trouvé le diamant par la gauche!");
-					}
-				}
-			}
+		
+	public void deplacergauche(){
+		int posx=rockford.getx();
+		int posy=rockford.gety();
+		if (matrice[posx-2][posy-1] == brickwall || matrice[posx-2][posy-1] == steelwall)
+		{ 
+			placer(posx, posy, rockford);
+		}
+		else
+		{
+			rockford.deplacerGauche();
+			//chute();
+			placer(posx, posy, vide);
 		}
 	}
-
-	public void deplacerhaut()
-	{
-		ElementsAffichables tmp;
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
-
-				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( j > 0 && matrice[i][j - 1] == dirt ) { // Vérifier que l'espace est dirt
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						j = j - 1;
-						matrice[i][j] = tmp;
-					} else if ( j > 0 && matrice[i][j - 1] == diamond ) {
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						System.out.println("hello");
-						j = j - 1;
-						matrice[i][j] = rockford;
-						System.out.println("Vous avez trouvé le diamant par le haut!");
-					}
-				}
-			}
+	public void deplacerhaut(){
+		int posx=rockford.getx();
+		int posy=rockford.gety();
+		if (matrice[posx-1][posy-2] == brickwall || matrice[posx-1][posy-2] == steelwall)
+		{
+			placer(posx, posy,rockford);
+		}
+		else
+		{
+			rockford.deplacerHaut();
+			//chute();
+			placer(posx, posy, vide);
+		}	
+	}
+	public void deplacerbas(){
+		int posx=rockford.getx();
+		int posy=rockford.gety();
+		if (matrice[posx-1][posy] == brickwall || matrice[posx-1][posy] == steelwall)
+		{		
+			placer(posx, posy, rockford);
+		}
+		else
+		{
+			rockford.deplacerBas();	
+			//chute();
+			placer(posx, posy, vide);
 		}
 	}
-
-	public void deplacerbas()
+	/*
+	public void chute()
 	{
-		ElementsAffichables tmp;
-		for ( int i = 0; i < x; i++ ) {
-			for ( int j = 0; j < y; j++ ) {
-
-				if ( matrice[i][j] == rockford ) { // Egale au type joueur, a changer /!\
-					if ( j + 1 < y && matrice[i][j + 1] == dirt ) { // vérifier que l'espace est vide
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						j = j + 1;
-						matrice[i][j] = tmp;
-					} else if ( j + 1 < y && matrice[i][j + 1] == diamond ) {
-						tmp = matrice[i][j];
-						matrice[i][j] = dirt;
-						j = j + 1;
-						matrice[i][j] = rockford;
-						System.out.println("Vous avez gagné le diamant par le bas");
-					}
+		int posx=rockford.getx();
+		int posy=rockford.gety();
+		
+		//while ()
+		
+		if ( matrice[posx-1][posy-2] == boulder  )
+		{
+			while (rockford.getx() == posx-1 && rockford.gety() < posy-2){
+			for(int i=posy-1; i<tailley; i++)
+			{
+				if (matrice[posx-1][i] == vide)
+				{
+					placer(posx,i+1, boulder);
+					placer(posx, i, vide);
+				}
+				else if (matrice[posx-1][i] == dirt){
+					
 				}
 			}
-		}
-	}
-
-	public int getX()
-	{
-		return x;
-	}
-
+			}
+		}	
+	}*/
 	
 
 	public ElementsAffichables[][] getMatrice()
 	{
 		return matrice;
 	}
+
 
 }

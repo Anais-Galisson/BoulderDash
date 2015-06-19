@@ -1,17 +1,16 @@
 package Controleur;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import Vue.FenetreBoulder;
 
 public class GestionClavier
 {
-	static int x = 0;
-	static int y = 0;
-
 	public static void Trame()
 	{
 		while ( true ) {
 			try {
-				Thread.sleep(60);
+				Thread.sleep(80);
 			} catch ( InterruptedException e ) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

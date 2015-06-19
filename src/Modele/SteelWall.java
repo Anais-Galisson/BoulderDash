@@ -13,7 +13,8 @@ public class SteelWall extends ElementsAffichables {
 	}
 
 	@Override
-	public BufferedImage construireEA() {
+	public BufferedImage construireEA() 
+	{
 		try 
 		{
 			this.loadSpriteSheet("steelwall.gif");
