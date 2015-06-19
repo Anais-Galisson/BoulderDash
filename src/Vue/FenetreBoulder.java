@@ -25,7 +25,12 @@ public class FenetreBoulder extends JFrame
 	
 
 	private final Panel PanelInformation = new Panel();
+<<<<<<< HEAD
 	
+=======
+	BufferedImage bf = null;
+
+>>>>>>> 499852c5b38f85ac517c2e2756b72ffab7157aec
 	public FenetreBoulder()
 	{
 		super("Boulder Dash");
@@ -36,15 +41,19 @@ public class FenetreBoulder extends JFrame
 		//setLocationRelativeTo(null);
 		PanelInformation.setBackground(Color.WHITE);
 		PanelInformation.setPreferredSize(new Dimension(200, 480));
-		
 		//	PanelJeu.setSize(60, 60);
-		PanelJeu.setBackground(Color.BLACK);
+		PanelJeu.setBackground(Color.blue);
 		PanelJeu.setPreferredSize(new Dimension(480, 480));
 		this.getContentPane().add(PanelInformation, BorderLayout.EAST);
 		this.getContentPane().add(PanelJeu, BorderLayout.WEST);
 		this.addKeyListener(keyListen);
 		this.setVisible(true);
+<<<<<<< HEAD
 		
+=======
+
+		//this.setContentPane(PanelJeu);
+>>>>>>> 499852c5b38f85ac517c2e2756b72ffab7157aec
 
 		GestionClavier.Trame();
 
