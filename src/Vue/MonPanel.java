@@ -31,7 +31,10 @@ public class MonPanel extends JPanel implements Observer
 		rock = Matrice.rockford.construireEA();
 		diam = Matrice.diamond.construireEA();
 		swall = Matrice.steelwall.construireEA();
-		bold = Matrice.boulder.construireEA();
+		//bold = Matrice.boulder.construireEA();
+		
+		
+		
 		brick = Matrice.brickwall.construireEA();
 		Matrice.rockford.addObserver(this);
 		
