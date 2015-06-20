@@ -13,10 +13,18 @@ public class RockfordModel extends ElementsAffichables
 	
 	public RockfordModel(int posinitX, int posinitY) 
 	{
-		 super (true, true, true);
+		 super (true, true, true, "rockford");
 		 x=posinitX;
 		 y=posinitY;
 		 tabObservateur=new ArrayList<Observer>();
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	@Override
@@ -61,22 +69,13 @@ public class RockfordModel extends ElementsAffichables
 		tabObservateur.remove(o);
 	}
 
-/*	public void notifyObserveurs() {
-		
-		for(int i=0;i<tabObservateur.size();i++)
-        {
-                Observer o = tabObservateur.get(i);
-                o.update(this);
-        }
-		
-	}
-*/
+
 	@Override
 	public void notifyObservers(){
 		
 		for(int i=0;i<tabObservateur.size();i++)
         {
-			//System.out.println("observeur:"+tabObservateur.get(i));
+			System.out.println("observeur:"+tabObservateur.get(i));
                 Observer o = tabObservateur.get(i);
                 o.update(this, null);
         }
@@ -88,7 +87,8 @@ public class RockfordModel extends ElementsAffichables
 		if(x<29){ //TODO replacer 100 par la taille exacte de la fenetre de jeux (le moins 1 c'est pour les murs)
 		this.x++;
 		}
-		setChanged();
+		System.out.println(this.x);
+		//setChanged();
 		notifyObservers();
 		
 	}
@@ -96,8 +96,9 @@ public class RockfordModel extends ElementsAffichables
 	public void deplacerGauche(){
 		if(x>2){
 		this.x--;
+		//System.out.println(x);
 		}
-		setChanged();
+		//setChanged();
 		notifyObservers();
 		
 	}
@@ -106,7 +107,7 @@ public class RockfordModel extends ElementsAffichables
 		if(y>2){
 		this.y--;
 		}
-		setChanged();
+		//setChanged();
 		notifyObservers();
 		
 	}

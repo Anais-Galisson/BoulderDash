@@ -8,7 +8,7 @@ public class Dirt extends ElementsAffichables{
 
 	public Dirt()
 	{
-		super(false, false, true);
+		super(false, false, true, "dirt");
 	}
 	public BufferedImage construireEA(){
 		try 

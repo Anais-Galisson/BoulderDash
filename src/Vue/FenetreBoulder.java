@@ -3,6 +3,7 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.util.Observer;
@@ -10,30 +11,29 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import Controleur.GestionClavier;
-import Controleur.Player;
+import Controleur.Jeu;
 import Modele.Diamond;
 import Modele.Matrice;
 
 public class FenetreBoulder extends JFrame
 {
-	// Pour l'affichage de la matrice
-	public static MonPanel PanelJeu = new MonPanel();
-	public static Matrice matrice = new Matrice(30, 30);
-	public static Player keyListen = new Player();
+	private Matrice m1;
+	private Jeu j;
+	private MonPanel PanelJeu;
+	private Panel PanelInformation;
+	private GestionClavier keylisten;
 
-	// diamond pour mettre dans matrice
-	
-
-	private final Panel PanelInformation = new Panel();
-<<<<<<< HEAD
-	
-=======
 	BufferedImage bf = null;
 
->>>>>>> 499852c5b38f85ac517c2e2756b72ffab7157aec
-	public FenetreBoulder()
+
+	public FenetreBoulder(Jeu j,Matrice m1, GestionClavier g1)
 	{
 		super("Boulder Dash");
+		this.j = j;
+		this.m1 = m1;
+		this.keylisten = g1;
+		PanelJeu = new MonPanel(j);
+		PanelInformation = new Panel();
 		setSize(680, 480);
 		setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,25 +41,15 @@ public class FenetreBoulder extends JFrame
 		//setLocationRelativeTo(null);
 		PanelInformation.setBackground(Color.WHITE);
 		PanelInformation.setPreferredSize(new Dimension(200, 480));
-		//	PanelJeu.setSize(60, 60);
 		PanelJeu.setBackground(Color.blue);
 		PanelJeu.setPreferredSize(new Dimension(480, 480));
 		this.getContentPane().add(PanelInformation, BorderLayout.EAST);
 		this.getContentPane().add(PanelJeu, BorderLayout.WEST);
-		this.addKeyListener(keyListen);
+		this.addKeyListener(g1);
 		this.setVisible(true);
-<<<<<<< HEAD
+
 		
-=======
-
-		//this.setContentPane(PanelJeu);
->>>>>>> 499852c5b38f85ac517c2e2756b72ffab7157aec
-
-		GestionClavier.Trame();
+		
 
 	}
-
-
-
-
 }

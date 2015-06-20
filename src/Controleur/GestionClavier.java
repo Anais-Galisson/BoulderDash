@@ -1,39 +1,42 @@
 package Controleur;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import Vue.FenetreBoulder;
-
-public class GestionClavier
+public class GestionClavier implements KeyListener
 {
-	public static void Trame()
-	{
-		while ( true ) {
-			try {
-				Thread.sleep(80);
-			} catch ( InterruptedException e ) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			if ( FenetreBoulder.keyListen.down ) {
-
-				FenetreBoulder.matrice.deplacerbas();
-
-			} else if ( FenetreBoulder.keyListen.up ) {
-
-				FenetreBoulder.matrice.deplacerhaut();
-			} else if ( FenetreBoulder.keyListen.right ) {
-
-				FenetreBoulder.matrice.deplacerdroite();
-
-			} else if ( FenetreBoulder.keyListen.left ) {
-
-				FenetreBoulder.matrice.deplacergauche();
-			}
-
-			FenetreBoulder.PanelJeu.repaint();
-
+	private Jeu j;
+		
+		public GestionClavier(Jeu j)
+		{
+			this.j=j;
 		}
-	}
+		public void keyPressed(KeyEvent e)
+		{
+			
+				if ( e.getExtendedKeyCode() == 38 ) {
+						j.getMatrice().deplacerhaut();
+				}
+				if ( e.getExtendedKeyCode() == 40 ) {
+					j.getMatrice().deplacerbas();
+				}
+				if ( e.getExtendedKeyCode() == 37 ) {
+					j.getMatrice().deplacergauche();
+				}
+				if ( e.getExtendedKeyCode() == 39 ) {
+					j.getMatrice().deplacerdroite();
+				}
+		}
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}	
+				
+	
 }

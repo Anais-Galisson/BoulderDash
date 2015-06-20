@@ -9,9 +9,8 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import Controleur.Jeu;
 import Modele.*;
-
-
 
 public class MonPanel extends JPanel implements Observer
 {
@@ -20,71 +19,70 @@ public class MonPanel extends JPanel implements Observer
 	public BufferedImage diam;
 	public BufferedImage swall;
 	public BufferedImage bold;
-	public BufferedImage brick;
+	public BufferedImage brick;	
+	private Jeu j;
 	
-
-	public MonPanel()
+	
+	public MonPanel(Jeu jeu)
 	{
 		super();
 		this.setVisible(true);
-		dt = Matrice.dirt.construireEA();
-		rock = Matrice.rockford.construireEA();
-		diam = Matrice.diamond.construireEA();
-		swall = Matrice.steelwall.construireEA();
-		//bold = Matrice.boulder.construireEA();
-		
-		
-		
-		brick = Matrice.brickwall.construireEA();
-		Matrice.rockford.addObserver(this);
-		
+		this.j=jeu;
 		
 	}
-
-	Image db;
-
 	@Override
 	public void paint/*Component*/(Graphics g)
-	{
-
-		//Creer un grand rectangle qui fait toute la longueur de la fenetre
-		//g.setColor(new Color(255, 255, 255));
-		//g.fillRect(0, 0, this.getSize().width, this.getSize().height);
-
-		//FenetreBoulder.matrice.afficherMatrice();
-		// Affichage de la matrice
-		for ( int x = 0; x < FenetreBoulder.matrice.getX(); x++ ) {
-			for ( int y = 0; y < FenetreBoulder.matrice.getY(); y++ ) {
-				if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.dirt ) {
+	{	
+		System.out.println("coucou");
+		System.out.println(j.getMatrice().getSizeX());
+		
+		for ( int x = 0; x < j.getMatrice().getX(); x++ ) 
+		{
+			//System.out.println(j.getMatrice().getX());
+			
+			for ( int y = 0; y < j.getMatrice().getY(); y++ ) 
+			{
+				if ( j.getMatrice().getCase(x, y).getType() == "dirt" ) {
+					dt = j.getMatrice().getCase(x, y).construireEA();
 					g.drawImage(dt, x*16, y*16, 16, 16, null);
-				} else if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.rockford ) {					
+					j.getMatrice().getCase(x, y).construireEA();
+				} else if ( j.getMatrice().getCase(x, y).getType() == "rockford") {
+					rock = j.getMatrice().getCase(x, y).construireEA();
 					g.drawImage(rock, x*16, y*16, 16, 16, null);
-				}else if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.diamond) {
+				}else if ( j.getMatrice().getCase(x, y).getType() == "diamond") {
+					diam = j.getMatrice().getCase(x, y).construireEA();
 					g.drawImage(diam, x*16, y*16, 16, 16, null);
-				}else if ( FenetreBoulder.matrice.getCase(x, y) == Matrice.steelwall) {
+				}else if ( j.getMatrice().getCase(x, y).getType() == "steelwall") {
+					swall = j.getMatrice().getCase(x, y).construireEA();
 					g.drawImage(swall, x*16, y*16, 16, 16, null);
-				}else if (FenetreBoulder.matrice.getCase(x, y) == Matrice.vide){
+				}else if (j.getMatrice().getCase(x, y).getType() == "vide"){
 					g.setColor(new Color(0, 0, 0));
 					g.fillRect(x* 16, y*16, 16, 16);
-				}/*else if (FenetreBoulder.matrice.getCase(x, y) == Matrice.boulders){
-					g.drawImage(bold, x*16, y*16, 16, 16, null);
-				}*/else if (FenetreBoulder.matrice.getCase(x,y) == Matrice.brickwall){
+				}else if (j.getMatrice().getCase(x, y).getType() == "brickwall"){
+					brick = j.getMatrice().getCase(x, y).construireEA();
 					g.drawImage(brick,x* 16, y*16, 16, 16, null);
 				}
-					
+				for (int i=0; i< j.getMatrice().boulders.size(); i++)	
+				{
+					if (j.getMatrice().getCase(x,y) == Matrice.boulders.get(i))
+					{
+						g.drawImage(j.getMatrice().boulders.get(i).construireEA(),x* 16, y*16, 16, 16, null);
+					}
+				}
 			}
-
 		}
-	}
-	
+}
 	
 	@Override
 	public void update(Observable o, Object arg) 
 	{
+		System.out.println("coucou");
 		if(o instanceof RockfordModel){
+			
 			RockfordModel rfm = (RockfordModel) o;
-			FenetreBoulder.matrice.placer(rfm.getx(),rfm.gety(),rfm);
-			//System.out.println("x: "+rfm.getx()+" y: "+rfm.gety());
+			System.out.println("x: "+rfm.getx()+" y: "+rfm.gety());
+			j.getMatrice().placer(rfm.getx(),rfm.gety(),rfm);
+			
 			
 			repaint();
 		}

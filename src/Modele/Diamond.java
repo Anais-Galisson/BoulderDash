@@ -8,7 +8,7 @@ public class Diamond extends ElementsAffichables
 {
 	public Diamond() 
 	{
-		super (true, true, true);
+		super (true, true, true, "diamond");
 	}
 
 	@Override

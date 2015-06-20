@@ -11,7 +11,7 @@ public class BrickWall extends ElementsAffichables{
 	public BrickWall()
 
 	{
-		super(false, false, true);
+		super(false, false, true, "brickwall");
 	}
 
 	@Override

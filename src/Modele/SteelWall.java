@@ -9,7 +9,7 @@ public class SteelWall extends ElementsAffichables {
 	
 	public SteelWall() 
 	{
-		super (false, false, false);
+		super (false, false, false, "steelwall");
 	}
 
 	@Override

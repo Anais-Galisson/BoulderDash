@@ -2,16 +2,22 @@ package Controleur;
 
 import java.awt.Menu;
 
+import Modele.Matrice;
 import Vue.FenetreBoulder;
 
 public class Main
 {
 	public static void main(String[] arg)
 	{
-
-		FenetreBoulder fb = new FenetreBoulder();
-		Menu m1 = new Menu();
-
+		
+	
+		Matrice m1 = new Matrice(30, 30);
+		Jeu j = new Jeu(m1);
+		GestionClavier g1 = new GestionClavier(j);
+		FenetreBoulder fb = new FenetreBoulder(j,m1,g1);
+		
+		
+		
 	}
 
 }

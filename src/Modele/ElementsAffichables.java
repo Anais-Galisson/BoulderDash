@@ -14,15 +14,17 @@ public abstract class ElementsAffichables extends Observable
 	protected Boolean animate;
 	protected Boolean move;
 	protected Boolean explose;
+	protected String type;
 
 
 
-	public ElementsAffichables(Boolean animate, Boolean move, Boolean explose)
+	public ElementsAffichables(Boolean animate, Boolean move, Boolean explose, String type)
 
 	{
 		this.animate = animate;
 		this.move = move;
 		this.explose = explose;
+		this.type=type;
 	}
 
 
@@ -39,4 +41,44 @@ public abstract class ElementsAffichables extends Observable
 	}
 	
 	public abstract BufferedImage construireEA();
+
+
+	public Boolean getAnimate() {
+		return animate;
+	}
+
+
+	public void setAnimate(Boolean animate) {
+		this.animate = animate;
+	}
+
+
+	public Boolean getMove() {
+		return move;
+	}
+
+
+	public void setMove(Boolean move) {
+		this.move = move;
+	}
+
+
+	public Boolean getExplose() {
+		return explose;
+	}
+
+
+	public void setExplose(Boolean explose) {
+		this.explose = explose;
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

@@ -9,12 +9,12 @@ public class Vide extends ElementsAffichables{
 
 	public Vide() 
 	{
-		super (false, false, false);
+		super (false, false, false, "vide");
 	}
 
 	@Override
 	public BufferedImage construireEA() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 }

@@ -12,7 +12,7 @@ public class Boulder extends ElementsAffichables
 	int x, y;
 	public Boulder(int x, int y)
 	{
-		super(true, true, true);
+		super(true, true, true, "boulder");
 		this.x=x;
 		this.y=y;
 	}
@@ -42,5 +42,12 @@ public class Boulder extends ElementsAffichables
 	
 	public int gety(){
 		return y;
+	}
+	
+	public void setx(int x){
+		this.x=x;
+	}
+	public void sety(int y){
+		this.y=y;
 	}
 }
