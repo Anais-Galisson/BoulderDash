@@ -3,30 +3,26 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Panel;
 import java.awt.image.BufferedImage;
-import java.util.Observer;
 
 import javax.swing.JFrame;
 
 import Controleur.GestionClavier;
 import Controleur.Jeu;
-import Modele.Diamond;
 import Modele.Matrice;
 
 public class FenetreBoulder extends JFrame
 {
-	private Matrice m1;
-	private Jeu j;
-	private MonPanel PanelJeu;
-	private Panel PanelInformation;
-	private GestionClavier keylisten;
+	private final Matrice m1;
+	private final Jeu j;
+	private final MonPanel PanelJeu;
+	private final Panel PanelInformation;
+	private final GestionClavier keylisten;
 
 	BufferedImage bf = null;
 
-
-	public FenetreBoulder(Jeu j,Matrice m1, GestionClavier g1)
+	public FenetreBoulder(Jeu j, Matrice m1, GestionClavier g1)
 	{
 		super("Boulder Dash");
 		this.j = j;
@@ -35,7 +31,7 @@ public class FenetreBoulder extends JFrame
 		PanelJeu = new MonPanel(j);
 		PanelInformation = new Panel();
 		setSize(680, 480);
-		setResizable(false);
+		//setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		//setLocationRelativeTo(null);
@@ -47,9 +43,6 @@ public class FenetreBoulder extends JFrame
 		this.getContentPane().add(PanelJeu, BorderLayout.WEST);
 		this.addKeyListener(g1);
 		this.setVisible(true);
-
-		
-		
 
 	}
 }
