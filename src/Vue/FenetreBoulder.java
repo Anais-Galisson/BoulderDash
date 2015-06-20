@@ -14,11 +14,11 @@ import Modele.Matrice;
 
 public class FenetreBoulder extends JFrame
 {
-	private  Matrice m1;
-	private Jeu j;
-	private MonPanel PanelJeu;
-	private Panel PanelInformation;
-	private GestionClavier keylisten;
+	private final Matrice m1;
+	private final Jeu j;
+	private final MonPanel PanelJeu;
+	private final Panel PanelInformation;
+	private final GestionClavier keylisten;
 
 	BufferedImage bf = null;
 

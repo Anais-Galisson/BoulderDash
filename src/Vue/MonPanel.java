@@ -14,12 +14,12 @@ import Modele.*;
 
 public class MonPanel extends JPanel implements Observer
 {
-	public BufferedImage dt;
-	public BufferedImage rock;
-	public BufferedImage diam;
-	public BufferedImage swall;
-	public BufferedImage bold;
-	public BufferedImage brick;	
+	private BufferedImage dt;
+	private BufferedImage rock;
+	private BufferedImage diam;
+	private BufferedImage swall;
+	private BufferedImage bold;
+	private BufferedImage brick;	
 	private Jeu j;
 	
 	
@@ -74,7 +74,6 @@ public class MonPanel extends JPanel implements Observer
 			}
 		}
 }
-	
 	@Override
 	public void update(Observable o, Object arg) 
 	{
@@ -85,7 +84,6 @@ public class MonPanel extends JPanel implements Observer
 			System.out.println("x: "+rfm.getx()+" y: "+rfm.gety());
 			//j.getMatrice().placer(rfm.getx(),rfm.gety(),rfm);
 			j.getMatrice().placerRockford(rfm.getx(),rfm.gety());
-			
 			repaint();
 		}
 	}
