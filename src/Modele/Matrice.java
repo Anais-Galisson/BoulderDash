@@ -22,7 +22,7 @@ public class Matrice
 		this.tailley = tailley;
 		matrice = new ElementsAffichables[taillex][tailley];
 		//creerElementsMatriceDefault();
-		rockford = new RockfordModel(2,2);
+		rockford = new RockfordModel(1,1);
 		creerElementsMatriceDefault();
 		//chute();
 	}
@@ -127,14 +127,18 @@ public class Matrice
 	public void deplacerdroite(){
 		int posx=rockford.getx();
 		int posy=rockford.gety();
-		if (matrice[posx][posy-1].getType() == "brickwall" || matrice[posx][posy-1].getType() == "steelwall" || matrice[posx][posy-1] instanceof Boulder )
+		//System.out.println(matrice[posx][posy-1].getType());
+		//System.out.println(matrice[posx][posy-1].getType());
+		if (matrice[posx+1][posy].getType() == "brickwall" || matrice[posx+1][posy].getType() == "steelwall" || matrice[posx+1][posy] instanceof Boulder )
+		//if (matrice[posx][posy-1].getType() == "brickwall" || matrice[posx][posy-1].getType() == "steelwall" || matrice[posx][posy-1] instanceof Boulder )
 		{
-			//placer(posx, posy, rockford);
-			placerRockford(posx-1, posy -1);
+			//placer(posx, posy, new RockfordModel(posx-1, posy-1));
+			//placerRockford(posx-1, posy-1);
 		}
 		else
 		{
 			rockford.deplacerDroite();
+			placer(posx+1, posy+1, new Vide());
 			//chute();
 		
 		}
@@ -143,46 +147,43 @@ public class Matrice
 	public void deplacergauche(){
 		int posx=rockford.getx();
 		int posy=rockford.gety();
-		if (matrice[posx-2][posy-1].getType() == "brickwall" || matrice[posx-2][posy-1].getType() == "steelwall" || matrice[posx-2][posy-1] instanceof Boulder)
-		{ 
-			//placer(posx, posy, rockford);
-			placerRockford(posx-1, posy -1);
+		if (matrice[posx-1][posy].getType() == "brickwall" || matrice[posx-1][posy].getType() == "steelwall" || matrice[posx-1][posy] instanceof Boulder)
+		{
+			//placer(posx, posy, new RockfordModel(posx-1, posy-1));
 		}
 		else
 		{
 			rockford.deplacerGauche();
 			//chute();
-			
+			placer(posx+1, posy+1, new Vide());
 		}
 	}
 	public void deplacerhaut(){
 		int posx=rockford.getx();
 		int posy=rockford.gety();
-		if (matrice[posx-1][posy-2].getType()== "brickwall" || matrice[posx-1][posy-2].getType() == "steelwall" || matrice[posx-1][posy-2] instanceof Boulder)
+		if (matrice[posx][posy-1].getType()== "brickwall" || matrice[posx][posy-1].getType() == "steelwall" || matrice[posx][posy-1] instanceof Boulder)
 		{
-			//placer(posx, posy,rockford);
-			placerRockford(posx-1, posy -1);
+			//placerRockford(posx-1, posy -1);
 		}
 		else
 		{
 			rockford.deplacerHaut();
 			//chute();
-			
+			placer(posx+1, posy+1, new Vide());
 		}	
 	}
 	public void deplacerbas(){
 		int posx=rockford.getx();
 		int posy=rockford.gety();
-		if (matrice[posx-1][posy].getType() == "brickwall" || matrice[posx-1][posy].getType() == "steelwall" || matrice[posx-1][posy] instanceof Boulder)
-		{		
-			//placer(posx, posy, rockford);
-			placerRockford(posx-1, posy -1);
+		if (matrice[posx][posy+1].getType() == "brickwall" || matrice[posx][posy+1].getType() == "steelwall" || matrice[posx][posy+1] instanceof Boulder)
+		{
+			//placerRockford(posx-1, posy -1);
 		}
 		else
 		{
 			rockford.deplacerBas();	
 			//chute();
-			placer(posx+1, posy, new Vide());
+			placer(posx+1, posy+1, new Vide());
 		}
 	}
 	
@@ -198,7 +199,6 @@ public class Matrice
 		}
 		
 	}*/
-	
 
 	public ElementsAffichables[][] getMatrice()
 	{

@@ -72,10 +72,10 @@ public class RockfordModel extends ElementsAffichables
 
 	@Override
 	public void notifyObservers(){
-		System.out.println(tabObservateur.size());
+		//System.out.println(tabObservateur.size());
 		for(int i=0;i<tabObservateur.size();i++)
         {
-			System.out.println("observeur:"+tabObservateur.get(i));
+			//System.out.println("observeur:"+tabObservateur.get(i));
                 Observer o = tabObservateur.get(i);
                 o.update(this, null);
         }
@@ -94,7 +94,7 @@ public class RockfordModel extends ElementsAffichables
 	}
 	
 	public void deplacerGauche(){
-		if(x>2){
+		if(x>1){
 		this.x--;
 		//System.out.println(x);
 		}
@@ -104,7 +104,7 @@ public class RockfordModel extends ElementsAffichables
 	}
 	
 	public void deplacerHaut(){
-		if(y>2){
+		if(y>1){
 		this.y--;
 		}
 		//setChanged();
