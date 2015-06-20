@@ -28,12 +28,14 @@ public class MonPanel extends JPanel implements Observer
 		super();
 		this.setVisible(true);
 		this.j=jeu;
+		j.getMatrice().rockford.addObserver(this);
+		
 		
 	}
 	@Override
 	public void paint/*Component*/(Graphics g)
 	{	
-		System.out.println("coucou");
+		//System.out.println("coucou");
 		System.out.println(j.getMatrice().getSizeX());
 		
 		for ( int x = 0; x < j.getMatrice().getX(); x++ ) 
@@ -76,13 +78,13 @@ public class MonPanel extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object arg) 
 	{
-		System.out.println("coucou");
-		if(o instanceof RockfordModel){
-			
+		//System.out.println("coucou");
+		if(o instanceof RockfordModel)
+		{
 			RockfordModel rfm = (RockfordModel) o;
 			System.out.println("x: "+rfm.getx()+" y: "+rfm.gety());
-			j.getMatrice().placer(rfm.getx(),rfm.gety(),rfm);
-			
+			//j.getMatrice().placer(rfm.getx(),rfm.gety(),rfm);
+			j.getMatrice().placerRockford(rfm.getx(),rfm.gety());
 			
 			repaint();
 		}

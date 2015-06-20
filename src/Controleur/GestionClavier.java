@@ -15,7 +15,7 @@ public class GestionClavier implements KeyListener
 		{
 			
 				if ( e.getExtendedKeyCode() == 38 ) {
-						j.getMatrice().deplacerhaut();
+					j.getMatrice().deplacerhaut();
 				}
 				if ( e.getExtendedKeyCode() == 40 ) {
 					j.getMatrice().deplacerbas();

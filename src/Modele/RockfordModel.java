@@ -72,7 +72,7 @@ public class RockfordModel extends ElementsAffichables
 
 	@Override
 	public void notifyObservers(){
-		
+		System.out.println(tabObservateur.size());
 		for(int i=0;i<tabObservateur.size();i++)
         {
 			System.out.println("observeur:"+tabObservateur.get(i));
@@ -84,7 +84,7 @@ public class RockfordModel extends ElementsAffichables
 	
 	public void deplacerDroite(){
 		
-		if(x<29){ //TODO replacer 100 par la taille exacte de la fenetre de jeux (le moins 1 c'est pour les murs)
+		if(x<29){ 
 		this.x++;
 		}
 		System.out.println(this.x);

@@ -23,7 +23,7 @@ public class Matrice
 		matrice = new ElementsAffichables[taillex][tailley];
 		//creerElementsMatriceDefault();
 		rockford = new RockfordModel(2,2);
-		remplirMatrice();
+		creerElementsMatriceDefault();
 		//chute();
 	}
 	
@@ -136,7 +136,7 @@ public class Matrice
 		{
 			rockford.deplacerDroite();
 			//chute();
-			placer(posx, posy, new Vide());
+		
 		}
 	}
 		
@@ -152,7 +152,7 @@ public class Matrice
 		{
 			rockford.deplacerGauche();
 			//chute();
-			placer(posx, posy, new Vide());
+			
 		}
 	}
 	public void deplacerhaut(){
@@ -167,7 +167,7 @@ public class Matrice
 		{
 			rockford.deplacerHaut();
 			//chute();
-			placer(posx, posy,new Vide());
+			
 		}	
 	}
 	public void deplacerbas(){
@@ -182,7 +182,7 @@ public class Matrice
 		{
 			rockford.deplacerBas();	
 			//chute();
-			placer(posx, posy, new Vide());
+			placer(posx+1, posy, new Vide());
 		}
 	}
 	
