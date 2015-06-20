@@ -6,7 +6,6 @@ public class Jeu
 {
 
 	private final Matrice m;
-	private Thread MatriceDraw;
 
 	public Jeu(Matrice m)
 	{

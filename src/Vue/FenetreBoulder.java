@@ -14,11 +14,11 @@ import Modele.Matrice;
 
 public class FenetreBoulder extends JFrame
 {
-	private final Matrice m1;
-	private final Jeu j;
-	private final MonPanel PanelJeu;
-	private final Panel PanelInformation;
-	private final GestionClavier keylisten;
+	private  Matrice m1;
+	private Jeu j;
+	private MonPanel PanelJeu;
+	private Panel PanelInformation;
+	private GestionClavier keylisten;
 
 	BufferedImage bf = null;
 
@@ -26,6 +26,7 @@ public class FenetreBoulder extends JFrame
 	{
 		super("Boulder Dash");
 		this.j = j;
+
 		this.m1 = m1;
 		this.keylisten = g1;
 		PanelJeu = new MonPanel(j);
@@ -42,7 +43,9 @@ public class FenetreBoulder extends JFrame
 		this.getContentPane().add(PanelInformation, BorderLayout.EAST);
 		this.getContentPane().add(PanelJeu, BorderLayout.WEST);
 		this.addKeyListener(g1);
+
 		this.setVisible(true);
 
 	}
+
 }
