@@ -1,53 +1,73 @@
 package Modele;
 
-
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
 
 public class Boulder extends ElementsAffichables
 {
-	int x, y;
+
+	private int x, y;
+	private final static String NameSprite = "boulder";
+
 	public Boulder(int x, int y)
 	{
 		super(true, true, true, "boulder");
-		this.x=x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 	}
 
-	@Override
-	public BufferedImage construireEA() {
-			try 
-			{
-				this.loadSpriteSheet("boulder.gif");
-			}
-		
-			catch ( IOException e ) 
-			{
-				e.printStackTrace();
-			}
-			BufferedImage sprite;
-		
-			sprite = this.getSprite(0, 0, 16, 16);
-			
-			//sprites.add(vr.getSprite(31, 31, 16, 16));
-			return sprite;
-	}
-	
-	public int getx(){
+	public int getx()
+	{
 		return x;
 	}
-	
-	public int gety(){
+
+	public int gety()
+	{
 		return y;
 	}
-	
-	public void setx(int x){
-		this.x=x;
+
+	public void setx(int x)
+	{
+		this.x = x;
 	}
-	public void sety(int y){
-		this.y=y;
+
+	public void sety(int y)
+	{
+		this.y = y;
 	}
+
+	/**
+	 * Return le sprite déjà chargé
+	 */
+	@Override
+	public BufferedImage construireEA()
+	{
+		return getSpriteSheet();
+
+	}
+
+	/**
+	 * Retourne le nom du sprite
+	 * 
+	 * @return
+	 */
+	public static String getNameSprite()
+	{
+		return NameSprite;
+	}
+
+	private static class InstanceHolder // Cette classe n'est chargé qu'une seule au premier accès de celle-ci
+	{
+		private static final BufferedImage sprite = loadSpriteSheet(getNameSprite());
+
+		private InstanceHolder()
+		{
+
+		}
+	}
+
+	static BufferedImage getSpriteSheet()
+	{
+		return InstanceHolder.sprite;
+	}
+
 }

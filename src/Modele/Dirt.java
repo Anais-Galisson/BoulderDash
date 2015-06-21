@@ -1,32 +1,47 @@
 package Modele;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
-public class Dirt extends ElementsAffichables{
+public class Dirt extends ElementsAffichables
+{
+
+	private final static String NameSprite = "dirt";
 
 	public Dirt()
 	{
 		super(false, false, true, "dirt");
 	}
-	public BufferedImage construireEA(){
-		try 
-		{
-			this.loadSpriteSheet("dirt.gif");
-		}
-	
-		catch ( IOException e ) 
-		{
-			e.printStackTrace();
-		}
-		BufferedImage sprite;
-	
-		sprite = this.getSprite(0, 0, 16, 16);
-		
-		//sprites.add(vr.getSprite(31, 31, 16, 16));
-		return sprite;
 
-}
+	@Override
+	public BufferedImage construireEA()
+	{
+		return getSpriteSheet();
+
+	}
+
+	/**
+	 * Retourne le nom du sprite
+	 * 
+	 * @return
+	 */
+	public static String getNameSprite()
+	{
+		return NameSprite;
+	}
+
+	private static class InstanceHolder // Cette classe n'est chargé qu'une seule au premier accès de celle-ci
+	{
+		private static final BufferedImage sprite = loadSpriteSheet(getNameSprite());
+
+		private InstanceHolder()
+		{
+
+		}
+	}
+
+	static BufferedImage getSpriteSheet()
+	{
+		return InstanceHolder.sprite;
+	}
 
 }

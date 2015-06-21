@@ -1,36 +1,47 @@
 package Modele;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
+public class SteelWall extends ElementsAffichables
+{
 
-public class SteelWall extends ElementsAffichables {
-	
-	public SteelWall() 
+	private static final String NameSprite = "steelwall";
+
+	public SteelWall()
 	{
-		super (false, false, false, "steelwall");
+		super(false, false, false, "steelwall");
 	}
 
 	@Override
-	public BufferedImage construireEA() 
+	public BufferedImage construireEA()
 	{
-		try 
+		return getSpriteSheet();
+
+	}
+
+	/**
+	 * Retourne le nom du sprite
+	 * 
+	 * @return
+	 */
+	public static String getNameSprite()
+	{
+		return NameSprite;
+	}
+
+	private static class InstanceHolder // Cette classe n'est chargé qu'une seule au premier accès de celle-ci
+	{
+		private static final BufferedImage sprite = loadSpriteSheet(getNameSprite());
+
+		private InstanceHolder()
 		{
-			this.loadSpriteSheet("steelwall.gif");
+
 		}
-	
-		catch ( IOException e ) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		BufferedImage sprite;
-	
-		sprite = this.getSprite(0, 0, 16, 16);
-		
-		//sprites.add(vr.getSprite(31, 31, 16, 16));
-		return sprite;
+	}
+
+	static BufferedImage getSpriteSheet()
+	{
+		return InstanceHolder.sprite;
 	}
 
 }
