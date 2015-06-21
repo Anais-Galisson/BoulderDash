@@ -9,7 +9,7 @@ public class RockfordModel extends ElementsAffichables
 	private int x;
 	private int y;
 	private final ArrayList<Observer> tabObservateur;
-	private static final String NameSprite = "rockford";
+	private static final String NameSprite = "rockford_remplacant";
 
 	public RockfordModel(int posinitX, int posinitY)
 	{
@@ -106,7 +106,13 @@ public class RockfordModel extends ElementsAffichables
 		notifyObservers();
 	}
 
-	// GESTION AFFICHAGE DES SPRITES
+	@Override
+	public BufferedImage construireEA()
+	{
+		return getSpriteSheet();
+
+	}
+
 	/**
 	 * Retourne le nom du sprite
 	 * 
@@ -130,13 +136,6 @@ public class RockfordModel extends ElementsAffichables
 	static BufferedImage getSpriteSheet()
 	{
 		return InstanceHolder.sprite;
-	}
-
-	@Override
-	public BufferedImage construireEA()
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

@@ -17,8 +17,8 @@ public class Matrice
 		this.tailley = tailley;
 		matrice = new ElementsAffichables[taillex][tailley];
 		//creerElementsMatriceDefault();
-		rockford = new RockfordModel(1, 1);
-		creerElementsMatriceDefault();
+		rockford = new RockfordModel(-1, -1);
+		remplirMatriceEditeur();
 		//chute();
 	}
 
@@ -59,7 +59,25 @@ public class Matrice
 		for ( int i = 7; i < taillex - 1; i++ ) {
 			matrice[i][20] = new BrickWall();
 		}
-		placerRockford(2, 2);
+
+	}
+
+	public void remplirMatriceEditeur()
+	{
+
+		for ( int i = 1; i < taillex - 1; i++ ) {
+			for ( int j = 1; j < tailley - 1; j++ ) {
+				matrice[i][j] = new Dirt();
+			}
+		}
+		for ( int j = 0; j < tailley; j++ ) {
+			matrice[0][j] = new SteelWall();
+			matrice[taillex - 1][j] = new SteelWall();
+		}
+		for ( int i = 0; i < taillex; i++ ) {
+			matrice[i][0] = new SteelWall();
+			matrice[i][tailley - 1] = new SteelWall();
+		}
 
 	}
 
@@ -95,7 +113,6 @@ public class Matrice
 			matrice[x_placement][y_placement] = elem;
 		} else if ( matrice[x_placement][y_placement].getType() == "diamond" ) {
 			System.out.println("vous avez mangé le diamond !!");
-			//matrice[x_placement][y_placement] = rockford;
 			placerRockford(x_placement, y_placement);
 		} else if ( matrice[x_placement][y_placement].getType() == "rockford" ) { //contre le dédoublement
 			matrice[x_placement][y_placement] = elem;
@@ -105,6 +122,25 @@ public class Matrice
 			System.out.println("Bug, pas de dirt, autre objet, impossible de s'y mettre !");
 		}
 		//ajouter d'autres conditions..
+	}
+
+	/**
+	 * Place les éléments dans le plateau de l'éditeur de niveau
+	 * 
+	 * @param x_placement
+	 * @param y_placement
+	 * @param elem
+	 */
+	public void placerElementEditeur(int x_placement, int y_placement, ElementsAffichables elem)
+	{
+		x_placement = x_placement - 1;
+		y_placement = y_placement - 1;
+
+		if ( x_placement < 0 || y_placement < 0 || y_placement > tailley || x_placement > taillex ) {
+			System.out.println("ERREUR");
+		} else {
+			matrice[x_placement][y_placement] = elem;
+		}
 	}
 
 	public ElementsAffichables getCase(int x, int y)
@@ -218,6 +254,7 @@ public class Matrice
 
 	public void placerRockford(int x, int y)
 	{
+
 		this.matrice[x][y] = this.rockford;
 		this.rockford.setX(x);
 		this.rockford.setY(y);

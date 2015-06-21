@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Diamond extends ElementsAffichables
 {
-	private static final String NameSprite = "diamond";
+	private static final String NameSprite = "diamond_remplacant";
 
 	public Diamond()
 	{
