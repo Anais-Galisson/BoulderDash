@@ -28,8 +28,10 @@ public abstract class ElementsAffichables extends Observable
 	public static BufferedImage loadSpriteSheet(String NameSprite)
 	{
 
+		System.out.println("@@@ test");
 		try {
-			spriteSheet = ImageIO.read(new File(NameSprite + ".gif"));
+			System.out.println(NameSprite + ".gif");
+			spriteSheet = ImageIO.read(new File("./src/Modele/" + NameSprite + ".gif"));
 
 		} catch ( IOException e ) {
 			// TODO Auto-generated catch block
