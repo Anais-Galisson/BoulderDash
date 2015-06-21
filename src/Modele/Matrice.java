@@ -250,6 +250,7 @@ public class Matrice
 		placer(20, 20, new Diamond());
 		placer(15, 20, new Diamond());
 		placer(20, 15, new Diamond());
+		placerRockford(2, 2);
 	}
 
 	public void placerRockford(int x, int y)

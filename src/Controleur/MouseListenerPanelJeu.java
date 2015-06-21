@@ -32,33 +32,48 @@ public class MouseListenerPanelJeu implements MouseListener
 		int posx = e.getX();
 		int posy = e.getY();
 		selection = ListenerButton.getEstSelectionné();
-		elementActuel = m1.getCase((posx / 16) + 1, (posy / 16) + 1).getType();
 
 		// Verifier qu'il n'y a qu'un boulder sur ma matrice !!!!
 		if ( selection == "rockford" && nbre_rockford == true ) {
 			m1.placerRockford(posx / 16, posy / 16);
+			System.out.println("rocford est remis à FALSE");
 			nbre_rockford = false;
 		} else if ( selection == "diamond" ) {
+
+			elementActuel = m1.getCase((posx / 16) + 1, (posy / 16) + 1).getType();
 			System.out.println(elementActuel);
 			m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new Diamond());
+
 			if ( elementActuel == "rockford" ) {
+				System.out.println(nbre_rockford);
 				nbre_rockford = true;
+				System.out.println("rocford est remis à true");
+				System.out.println(nbre_rockford);
 			}
 		} else if ( selection == "steelwall" ) {
 			System.out.println(elementActuel);
 			m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new SteelWall());
 			if ( elementActuel == "rockford" ) {
+				System.out.println(nbre_rockford);
 				nbre_rockford = true;
+				System.out.println("rocford est remis à true");
+				System.out.println(nbre_rockford);
 			}
 		} else if ( selection == "brickwall" ) {
 			m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new BrickWall());
 			if ( elementActuel == "rockford" ) {
+				System.out.println(nbre_rockford);
 				nbre_rockford = true;
+				System.out.println("rocford est remis à true");
+				System.out.println(nbre_rockford);
 			}
 		} else if ( selection == "dirt" ) {
 			m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new Dirt());
 			if ( elementActuel == "rockford" ) {
+				System.out.println(nbre_rockford);
 				nbre_rockford = true;
+				System.out.println("rocford est remis à true");
+				System.out.println(nbre_rockford);
 			}
 		} else if ( selection == "boulder" ) {
 			System.out.println("boulderrrrr");

@@ -1,7 +1,7 @@
 package Controleur;
 
 import Modele.Matrice;
-import Vue.FenetreEditeurDeJeu;
+import Vue.FenetreBoulder;
 
 public class Main
 {
@@ -12,8 +12,8 @@ public class Main
 
 		Jeu j = new Jeu(m1);
 		GestionClavier g1 = new GestionClavier(j);
-		//FenetreBoulder fb = new FenetreBoulder(j, m1, g1);
-		FenetreEditeurDeJeu fdj = new FenetreEditeurDeJeu(j, m1);
+		FenetreBoulder fb = new FenetreBoulder(j, m1, g1);
+		//FenetreEditeurDeJeu fdj = new FenetreEditeurDeJeu(j, m1);
 	}
 
 }
