@@ -1,5 +1,10 @@
 package Modele;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Matrice
@@ -37,6 +42,10 @@ public class Matrice
 		return taillex;
 	}
 
+	/**
+	 * Rempli la matrice d'élément dirt et tout autour d'élémenet Steelwall
+	 * Cette fonction est notamment utilisé pour l'éditeur de niveau
+	 */
 	public void remplirMatrice()
 	{
 		for ( int i = 1; i < taillex - 1; i++ ) {
@@ -81,16 +90,29 @@ public class Matrice
 
 	}
 
+	/**
+	 * Retourne la taille de la matrice sur l'axe x
+	 * 
+	 * @return
+	 */
 	public int getSizeX()
 	{
 		return matrice.length;
 	}
 
+	/**
+	 * Retourne la taille de la matrice sur l'axe y
+	 * 
+	 * @return
+	 */
 	public int getSizeY()
 	{
 		return matrice.length;
 	}
 
+	/**
+	 * Permet d'afficher la matrice dans la console (debug)
+	 */
 	public void afficherMatrice()
 	{
 		System.out.println();
@@ -143,6 +165,52 @@ public class Matrice
 		}
 	}
 
+	/**
+	 * Place un élément dans la matrice en connaissant seulement sont nom et son
+	 * placement
+	 * 
+	 * @param nom
+	 * @param i
+	 * @param j
+	 */
+	public void placerElementByNom(String nom, int i, int j)
+	{
+
+		switch ( nom ) {
+			case "rockford" :
+				this.placerRockford(i, j);
+				break;
+			case "diamond" :
+				this.placerElementEditeur(i, j, new Diamond());
+
+				break;
+			case "steelwall" :
+				this.placerElementEditeur(i, j, new SteelWall());
+
+				break;
+			case "brickwall" :
+				this.placerElementEditeur(i, j, new BrickWall());
+
+				break;
+			case "dirt" :
+				this.placerElementEditeur(i, j, new Dirt());
+
+				break;
+			case "boulder" :
+				this.placerRockford(i, j);
+				break;
+			default :
+				break;
+		}
+	}
+
+	/**
+	 * Récupère l'élément affichable présent à l'emplacement de la matrice voulu
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public ElementsAffichables getCase(int x, int y)
 	{
 		return matrice[x][y];
@@ -222,28 +290,19 @@ public class Matrice
 		return matrice;
 	}
 
+	/**
+	 * Créer un niveau par défault
+	 */
 	public void creerElementsMatriceDefault()
 	{
 
 		remplirMatrice();
-		Boulder b1 = new Boulder(4, 5);
-		Boulder b2 = new Boulder(11, 10);
-		Boulder b3 = new Boulder(9, 12);
-		Boulder b4 = new Boulder(21, 9);
-		Boulder b5 = new Boulder(24, 23);
-		boulders.add(b1);
-		boulders.add(b2);
-		boulders.add(b3);
-		boulders.add(b4);
-		boulders.add(b5);
-		//rockford.addObserver(this);
-		//d = dirt.construireDirt();
-		remplirMatrice();
-		placer(b1.getx(), b1.gety(), boulders.get(0));
-		placer(b2.getx(), b2.gety(), boulders.get(1));
-		placer(b3.getx(), b3.gety(), boulders.get(2));
-		placer(b4.getx(), b4.gety(), boulders.get(3));
-		placer(b5.getx(), b5.gety(), boulders.get(4));
+		placerBoulder(4, 5);
+		placerBoulder(9, 12);
+		placerBoulder(11, 10);
+		placerBoulder(21, 9);
+		placerBoulder(24, 23);
+
 		placer(5, 5, new Diamond());
 		placer(10, 20, new Diamond());
 		placer(20, 10, new Diamond());
@@ -253,6 +312,12 @@ public class Matrice
 		placerRockford(2, 2);
 	}
 
+	/**
+	 * Permet de placer de rockford dans la matrice
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public void placerRockford(int x, int y)
 	{
 
@@ -261,4 +326,58 @@ public class Matrice
 		this.rockford.setY(y);
 	}
 
+	public void placerBoulder(int x, int y)
+	{
+		Boulder boulder = new Boulder(x, y);
+		boulders.add(boulder);
+		int position = boulders.indexOf(boulder);
+		System.out.println(position);
+		placer(x, y, boulder);
+	}
+
+	/**
+	 * Sauvegarde des éléments de la matrice dans un fichier .txt
+	 * 
+	 * @param nomFichier
+	 */
+	public void writeFile(String nomFichier)
+	{
+		try {
+			// Créer un objet java.io.FileWriter avec comme argument le mon du fichier dans lequel enregsitrer
+			FileWriter fileWriter = new FileWriter("src/Niveaux/" + nomFichier + ".txt");
+			// Mettre le flux en tampon (en cache)
+			BufferedWriter out = new BufferedWriter(fileWriter);
+
+			for ( int i = 0; i < this.getSizeX(); i++ ) {
+				for ( int j = 0; j < this.getSizeY(); j++ ) {
+					fileWriter.write("" + this.getCase(i, j).getType() + ";");
+				}
+				fileWriter.write("\n");
+			}
+			// Fermer le flux (c'est toujours mieux de le fermer explicitement)
+			out.close();
+
+		} catch ( IOException er ) {
+
+		}
+	}
+
+	public void readFile(String nomFichier)
+	{
+
+		try {
+			FileReader fread = new FileReader("src/Niveaux/" + nomFichier);
+			BufferedReader bread = new BufferedReader(fread);
+
+			for ( int i = 0; i < this.getSizeX(); i++ ) {
+				String[] tabNom = bread.readLine().split(";");
+				for ( int j = 0; j < this.getSizeY(); j++ ) {
+					String nom = tabNom[j];
+					placerElementByNom(nom, i, j);
+				}
+			}
+		} catch ( IOException e ) {
+			System.err.println("Error: " + e.getMessage());
+		}
+	}
 }

@@ -11,8 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-import Controleur.ActionListenerButton;
+import Controleur.ActionListenerPanelInformation;
 import Controleur.Jeu;
 import Controleur.MouseListenerPanelJeu;
 import Modele.Matrice;
@@ -23,7 +24,7 @@ public class FenetreEditeurDeJeu extends JFrame
 	private Jeu j;
 	private final MonPanel PanelJeu;
 	private final Panel PanelInformation;
-	private ActionListenerButton buttonL;
+	private ActionListenerPanelInformation buttonL;
 	private MouseListenerPanelJeu paneljeuL;
 
 	//private ButtonListener keyListen;
@@ -34,6 +35,12 @@ public class FenetreEditeurDeJeu extends JFrame
 		this.m1 = m1;
 		PanelJeu = new MonPanel(j);
 		PanelInformation = new Panel();
+		FenetreEditeurDeJeuInit();
+
+	}
+
+	public void FenetreEditeurDeJeuInit()
+	{
 
 		setSize(700, 520);
 		setResizable(false);
@@ -46,8 +53,8 @@ public class FenetreEditeurDeJeu extends JFrame
 		this.getContentPane().add(PanelJeu, BorderLayout.WEST);
 
 		JLabel titre = new JLabel("      Editeur de niveau      ");
-		JButton Enregistrer = new JButton("Enregistrer");
-		JButton Annuler = new JButton("Annuler");
+		JButton enregistrer = new JButton("Enregistrer");
+		JButton annuler = new JButton("Annuler");
 
 		JPanel south = new JPanel();
 		JPanel center = new JPanel();
@@ -58,8 +65,8 @@ public class FenetreEditeurDeJeu extends JFrame
 		PanelInformation.add(north, BorderLayout.NORTH);
 
 		south.add(titre);
-		north.add(Enregistrer);
-		north.add(Annuler);
+		north.add(enregistrer);
+		north.add(annuler);
 
 		GridLayout gl = new GridLayout(3, 2);
 		center.setLayout(gl);
@@ -70,7 +77,6 @@ public class FenetreEditeurDeJeu extends JFrame
 		JButton button_rockford = new JButton(rockford);
 		ImageIcon diamond = new ImageIcon("./src/Modele/diamond_remplacant.gif");
 		JButton button_diamond = new JButton(diamond);
-
 		ImageIcon dirt = new ImageIcon("./src/Modele/dirt.gif");
 		JButton button_dirt = new JButton(dirt);
 		ImageIcon boulder = new ImageIcon("./src/Modele/boulder.gif");
@@ -80,8 +86,8 @@ public class FenetreEditeurDeJeu extends JFrame
 		ImageIcon steelwall = new ImageIcon("./src/Modele/steelwall.gif");
 		JButton button_steelwall = new JButton(steelwall);
 
-		// Création des mouseListener sur chacun des boutons
-		Controleur.ActionListenerButton ctrl = new ActionListenerButton(button_dirt, button_boulder, button_brickwall, button_steelwall, button_rockford, button_diamond);
+		// Création des mouseListener sur chacun des boutons 
+		Controleur.ActionListenerPanelInformation ctrl = new ActionListenerPanelInformation(button_dirt, button_boulder, button_brickwall, button_steelwall, button_rockford, button_diamond, enregistrer, annuler);
 
 		button_boulder.addActionListener(ctrl);
 		button_brickwall.addActionListener(ctrl);
@@ -89,6 +95,8 @@ public class FenetreEditeurDeJeu extends JFrame
 		button_steelwall.addActionListener(ctrl);
 		button_rockford.addActionListener(ctrl);
 		button_diamond.addActionListener(ctrl);
+		enregistrer.addActionListener(ctrl);
+		annuler.addActionListener(ctrl);
 
 		center.add(button_rockford);
 		center.add(button_diamond);
@@ -101,7 +109,17 @@ public class FenetreEditeurDeJeu extends JFrame
 		MouseListenerPanelJeu mlpj = new MouseListenerPanelJeu(ctrl, PanelJeu, m1);
 		PanelJeu.addMouseListener(mlpj);
 		this.setVisible(true);
-
 	}
 
+	public void popUpEnregistrement()
+	{
+
+		JButton button_enregistrer2 = new JButton();
+		final JTextArea nom_fichier_sauvegardé = new JTextArea();
+		JFrame parent = new JFrame();
+
+		parent.add(button_enregistrer2);
+		parent.add(nom_fichier_sauvegardé);
+		parent.setLocationRelativeTo(null);
+	}
 }
