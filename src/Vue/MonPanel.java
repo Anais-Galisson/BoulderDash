@@ -73,7 +73,6 @@ public class MonPanel extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object arg)
 	{
-		//System.out.println("coucou");
 		if ( o instanceof RockfordModel ) {
 			RockfordModel rfm = (RockfordModel) o;
 			j.getMatrice().placerRockford(rfm.getx(), rfm.gety());

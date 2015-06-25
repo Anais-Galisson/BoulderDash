@@ -178,7 +178,8 @@ public class Matrice
 
 		switch ( nom ) {
 			case "rockford" :
-				this.placerRockford(i, j);
+
+				this.placerRockford(i - 1, j - 1);
 				break;
 			case "diamond" :
 				this.placerElementEditeur(i, j, new Diamond());
@@ -197,7 +198,7 @@ public class Matrice
 
 				break;
 			case "boulder" :
-				this.placerRockford(i, j);
+				this.placerBoulder(i, j);
 				break;
 			default :
 				break;
@@ -321,11 +322,29 @@ public class Matrice
 	public void placerRockford(int x, int y)
 	{
 
-		this.matrice[x][y] = this.rockford;
-		this.rockford.setX(x);
-		this.rockford.setY(y);
+		int x_avant = rockford.getx();
+		int y_avant = rockford.gety();
+
+		if ( x_avant == -1 && y_avant == -1 ) {
+			matrice[x][y] = this.rockford;
+			this.rockford.setX(x);
+			this.rockford.setY(y);
+		} else {
+			matrice[x_avant][y_avant] = new Dirt();
+			matrice[x][y] = this.rockford;
+			this.rockford.setX(x);
+			this.rockford.setY(y);
+		}
+
 	}
 
+	/**
+	 * Place un élément de type Boulder dans la matrice Ajoute la boulder créer
+	 * dans la liste "boulders"
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public void placerBoulder(int x, int y)
 	{
 		Boulder boulder = new Boulder(x, y);
@@ -333,6 +352,46 @@ public class Matrice
 		int position = boulders.indexOf(boulder);
 		System.out.println(position);
 		placer(x, y, boulder);
+	}
+
+	/**
+	 * Cherche le rockford dans la matrice et return sa position x
+	 * 
+	 * @return
+	 */
+	public int trouverRockfordX()
+	{
+		int tailleX = -3;
+		for ( int x = 1; x < taillex - 1; x++ ) {
+			for ( int y = 1; y < tailley - 1; y++ ) {
+				if ( matrice[x][y].getType() == "rockford" ) {
+					tailleX = x;
+				}
+			}
+		}
+		System.out.println(tailleX);
+		return tailleX;
+
+	}
+
+	/**
+	 * Cherche le rockford dans la matrice et return sa position y
+	 * 
+	 * @return
+	 */
+	public int trouverRockfordY()
+	{
+		int tailleY = -3;
+		for ( int x = 1; x < taillex - 1; x++ ) {
+			for ( int y = 1; y < tailley - 1; y++ ) {
+				if ( matrice[x][y].getType() == "rockford" ) {
+					tailleY = x;
+				}
+			}
+		}
+		System.out.println(tailleY);
+		return tailleY;
+
 	}
 
 	/**
