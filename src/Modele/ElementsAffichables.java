@@ -7,7 +7,7 @@ import java.util.Observable;
 
 import javax.imageio.ImageIO;
 
-public abstract class ElementsAffichables extends Observable
+public abstract class ElementsAffichables
 {
 
 	public static BufferedImage spriteSheet;

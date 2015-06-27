@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class ActionListenerPanelInformation implements ActionListener
+public class ActionListenerButton implements ActionListener
 {
 
 	private String estSelectionné;
@@ -16,11 +16,8 @@ public class ActionListenerPanelInformation implements ActionListener
 	private final JButton button_boulder;
 	private final JButton button_brickwall;
 	private final JButton button_steelwall;
-	private final JButton button_enregistrer;
-	private final JButton button_annuler;
-	private String nom_fichier;
 
-	public ActionListenerPanelInformation(JButton button_dirt, JButton button_boulder, JButton button_brickwall, JButton button_steelwall, JButton button_rockford, JButton button_diamond, JButton button_enregistrer, JButton button_annuler)
+	public ActionListenerButton(JButton button_dirt, JButton button_boulder, JButton button_brickwall, JButton button_steelwall, JButton button_rockford, JButton button_diamond)
 	{
 		this.estSelectionné = "init";
 		this.button_rockford = button_rockford;
@@ -29,9 +26,6 @@ public class ActionListenerPanelInformation implements ActionListener
 		this.button_boulder = button_boulder;
 		this.button_brickwall = button_brickwall;
 		this.button_steelwall = button_steelwall;
-
-		this.button_enregistrer = button_enregistrer;
-		this.button_annuler = button_annuler;
 	}
 
 	@Override
@@ -60,11 +54,6 @@ public class ActionListenerPanelInformation implements ActionListener
 			estSelectionné = "rockford";
 			System.out.println(estSelectionné);
 
-		} else if ( e.getSource() == button_enregistrer ) {
-			System.out.println("C'est bon ! ;) ");
-			System.out.println(nom_fichier);
-		} else if ( e.getSource() == button_annuler ) {
-			System.out.println("Revenir Menu");
 		}
 
 	}

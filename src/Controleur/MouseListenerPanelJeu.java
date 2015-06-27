@@ -3,19 +3,23 @@ package Controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import Modele.BrickWall;
+import Modele.Diamond;
+import Modele.Dirt;
 import Modele.Matrice;
+import Modele.SteelWall;
 import Vue.MonPanel;
 
 public class MouseListenerPanelJeu implements MouseListener
 {
-	private final ActionListenerPanelInformation ListenerButton;
+	private final ActionListenerButton ListenerButton;
 	private final MonPanel PanelJeu;
 	private final Matrice m1;
 	private String selection;
-	private final boolean nbre_rockford = true;
+	private boolean nbre_rockford = true;
 	private String elementActuel;
 
-	public MouseListenerPanelJeu(ActionListenerPanelInformation ListenerButton, MonPanel panelJeu, Matrice m1)
+	public MouseListenerPanelJeu(ActionListenerButton ListenerButton, MonPanel panelJeu, Matrice m1)
 	{
 		this.ListenerButton = ListenerButton;
 		this.PanelJeu = panelJeu;
@@ -25,11 +29,42 @@ public class MouseListenerPanelJeu implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		int posx = (e.getX() / 16) + 1;
-		int posy = (e.getY() / 16) + 1;
+		int posx = e.getX();
+		int posy = e.getY();
 		selection = ListenerButton.getEstSelectionné();
-		System.out.println(posx);
-		m1.placerElementByNom(selection, posx, posy);
+		elementActuel = m1.getCase((posx / 16) + 1, (posy / 16) + 1).getType();
+
+		// Verifier qu'il n'y a qu'un boulder sur ma matrice !!!!
+		if ( selection == "rockford" && nbre_rockford == true ) {
+			m1.placerRockford(posx / 16, posy / 16);
+			nbre_rockford = false;
+		} else if ( selection == "diamond" ) {
+			System.out.println(elementActuel);
+			//m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new Diamond());
+			if ( elementActuel == "rockford" ) {
+				nbre_rockford = true;
+			}
+		} else if ( selection == "steelwall" ) {
+			System.out.println(elementActuel);
+			m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new SteelWall());
+			if ( elementActuel == "rockford" ) {
+				nbre_rockford = true;
+			}
+		} else if ( selection == "brickwall" ) {
+			m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new BrickWall());
+			if ( elementActuel == "rockford" ) {
+				nbre_rockford = true;
+			}
+		} else if ( selection == "dirt" ) {
+			m1.placerElementEditeur((posx / 16) + 1, (posy / 16) + 1, new Dirt());
+			if ( elementActuel == "rockford" ) {
+				nbre_rockford = true;
+			}
+		} else if ( selection == "boulder" ) {
+			System.out.println("boulderrrrr");
+			// Comment placer boulder ?
+		}
+
 		PanelJeu.repaint();
 
 	}
