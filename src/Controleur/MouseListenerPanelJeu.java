@@ -28,7 +28,7 @@ public class MouseListenerPanelJeu implements MouseListener
 		int posx = (e.getX() / 16) + 1;
 		int posy = (e.getY() / 16) + 1;
 		selection = ListenerButton.getEstSelectionné();
-
+		System.out.println(posx);
 		m1.placerElementByNom(selection, posx, posy);
 		PanelJeu.repaint();
 
